@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom"
 import { FaDeleteLeft } from "react-icons/fa6";
 // import { AiFillDelete } from "react-icons/ai";
-import ManagerHeader from "../Components/ManagerHeader"
-import ManagerSidebar from "../Components/ManagerSidebar"
 import { useEffect, useState } from "react";
 import axios from "axios";
-function PendingRequests (){
+import WorkerHeader from "../Components/WorkerHeader";
+function WorkerPendingRequests (){
 
     const [allPendingRequests, setAllPendingRequests] = useState([])
     
@@ -22,10 +21,9 @@ function PendingRequests (){
         },[])
 
     return <div className="w-full h-screen bg-lightBlue">
-        <ManagerHeader />
-        <ManagerSidebar />
+        <WorkerHeader />
         <div className="ml-12">
-            <h1 className=" text-center text-3xl font-semibold text-[#3b3832] pt-[6%]"> Pending Requests </h1>
+            <h1 className=" text-center text-3xl font-semibold text-[#3b3832] pt-[6%]"> Worker Pending Requests </h1>
             <Link to="/managerDashboard"><FaDeleteLeft className="text-[40px] text-[#3b3832] hover:text-[#6A6458] right-36 mt-[-33px] absolute " /></Link>
 
             <div className="w-full  ml-[15%] top-58 absolute  mt-10 max-w-4xl  bg-white rounded-lg shadow-md ">
@@ -50,7 +48,7 @@ function PendingRequests (){
                             <td className="p-3 border text-center border-gray-500"> {requestInfo.fullName} </td>
                             <td className="p-3 border text-center border-gray-500"> <span className="text-white bg-[#6A6458]  rounded-[5px] px-3 py-1"> {requestInfo.status} </span> </td>
                             <td className="p-3 border text-center border-gray-500"> {requestInfo.destination}  </td> {/* make the world range 5 word +*/}
-                            <td className="p-3 border text-center border-gray-500"> <span className="text-[#6A6458] underline hover:text-black font-semibold rounded-full px-2 py-1"><Link to={`/managerMessageView/${requestInfo._id}`}>View more </Link></span> </td>
+                            <td className="p-3 border text-center border-gray-500"> <span className="text-[#6A6458] underline hover:text-black font-semibold rounded-full px-2 py-1"><Link to={`/managerMessageView/${requestInfo.ID}`}>View more </Link></span> </td>
                         </tr>
                             })
                         }
@@ -61,4 +59,4 @@ function PendingRequests (){
         </div>
     </div>
 }
-export default PendingRequests
+export default WorkerPendingRequests

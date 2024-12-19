@@ -27,7 +27,7 @@ function ManagerNotificationPage (){
 
 
     const HandleDeleteNotification = (_id) => {
-        axios.delete(`http://localhost:7000/request/delete/${_id}`).then(() => {
+        axios.delete(`http://localhost:7000/requests/delete/${_id}`).then(() => {
             alert("Notification deleted successfully")
         }).catch((error) => {
             console.log(error)
@@ -46,16 +46,16 @@ function ManagerNotificationPage (){
                 <h1 className="text-2xl font-semibold text-[#6A6458]"> Notifications </h1>
                   {/* Message 1 */}
                     {
-                        Notifications.map((message) =>{
+                        Notifications.map((QuickMessage) =>{
                             return <div className=" w-[95%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#dad2c2] mt-3">
                             <FaUserCircle className="text-4xl text-[#211F1E]" />
                             <div className="leading-[20px]">
-                                <h1 className="text-[18px] font-semibold ml-2 text-[#211F1E]"> {message.fullName} </h1>
-                                <p className="text-[14px] ml-2"> {message.reason}</p>
+                                <h1 className="text-[18px] font-semibold ml-2 text-[#211F1E]"> {QuickMessage.fullName} </h1>
+                                <p className="text-[14px] ml-2"> {QuickMessage.reason}</p>
                             </div>
                             <div className="flex gap-2 items-center text-sky-900  absolute right-20">
-                                <MdDelete onClick={() => HandleDeleteNotification(message._id)} className="text-[30px] text-[#211F1E] hover:text-[#6A6458]" />
-                                <Link to={`/managerViewMessage/${message._id}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
+                                <MdDelete onClick={() => HandleDeleteNotification(QuickMessage._id)} className="text-[30px] text-[#211F1E] hover:text-[#6A6458]" />
+                                <Link to={`/managerMessageView/${QuickMessage.ID}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
                             </div>
                         </div>
                         })

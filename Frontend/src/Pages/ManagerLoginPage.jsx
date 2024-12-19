@@ -32,15 +32,15 @@ function ManagerLoginPage (){
     }
 
     return <div className="w-full h-screen bg-lightGray">
-        <div className="w-full h-[80px] bg-deepBlue">
+        <div className="w-full h-[80px] bg-[#6A6458]">
             <h1 className="text-center text-3xl text-white font-semibold pt-5"> iDan</h1>
         </div>
-     <div className="w-full h-screen flex my-20  justify-center ">
-        <div className="bg-white pt-[10px] shadow-lg px-2 w-[300px] h-[235px] rounded-[8px]">
-            <h1 className="text-center font-semibold text-[25px] mb-2 font-Roboto"> Manager Login </h1>
-            <input value={ID} onChange={(event) =>  setID(event.target.value)} className="w-[280px] px-1 h-[35px] outline-none rounded-[10px] border-2 border-deepBlue " type="text" placeholder="Enter your ID" />
-            <input value={Password} onChange={(event) =>  setPassword(event.target.value)} className="w-[280px] px-1 mt-5 h-[35px] outline-none rounded-[10px] border-2 border-deepBlue " type="password" placeholder="Enter your password" />
-            <button onClick={HandleAdmin} className="w-[280px] h-[35px] mt-5 text-white hover:bg-skyBlue bg-deepBlue rounded-[10px]"> Submit </button>
+     <div className="w-full h-screen flex  my-40 sm:my-20  justify-center ">
+        <div className="bg-white pt-[10px] shadow-lg px-5 w-[350px] h-[280px] rounded-[8px]">
+            <h1 className="text-center  text-[25px] mb-5 font-Roboto"> Manager Login </h1>
+            <input value={ID} onChange={(event) =>  setID(event.target.value)} className="w-[310px] px-1 h-[40px] outline-none rounded-[5px] border-2 border-deepBlue " type="text" placeholder="Enter your ID" />
+            <input value={Password} onChange={(event) =>  setPassword(event.target.value)} className="w-[310px] px-1 mt-6 h-[40px] outline-none rounded-[5px] border-2 border-deepBlue " type="password" placeholder="Enter your password" />
+            <button onClick={HandleAdmin} className="w-[310px] h-[40px] mt-7 text-white hover:bg-[#211f1b] bg-[#6A6458] rounded-[5px]"> Submit </button>
             </div>
     </div>
     </div>

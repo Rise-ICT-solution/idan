@@ -7,7 +7,6 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <div>
       <App />
-      <h1>hello</h1>
     </div>
   </BrowserRouter>
 )

@@ -3,15 +3,15 @@ const mongoose = require("mongoose")
 const WorkerSchema = mongoose.Schema({
     name : {
         type: String,
-        required: false //false means optional
+        required: true
     },
     id : {
         type: String,
-        required: false //false means optional
+        required: true
     },
     title : {
         type: String,
-        required: false //false means optional
+        required: true
     },
     email : {
         type: String,

@@ -1,60 +1,62 @@
+import ManagerHeader from "../Components/ManagerHeader"
+import ManagerSidebar from "../Components/ManagerSidebar"
 import { Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { MdOutlineMessage } from "react-icons/md";
+import { FaDeleteLeft } from "react-icons/fa6";
+import axios from "axios"
+import { useState, useEffect } from "react";
 import WorkerHeader from "../Components/WorkerHeader";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaUserTie } from "react-icons/fa6";
-import { BsQrCode } from "react-icons/bs";
-import { FaFileDownload } from "react-icons/fa";
-
-
 
 
 function WorkerNotificationPage (){
-    return <div className="w-full bg-fixed overflow-hidden h-screen bg-lightBlue">
-        <WorkerHeader />
-        <div className="w-full ml-[14%] px-[20px] py-[10px] h-[480px] top-58 absolute   border-black  mt-24 max-w-4xl  bg-white rounded-xl shadow-md ">
-            <div className="mt-5">
-                <div className="flex gap-2 items-center">
-                    <FaUserTie className="text-4xl" />
-                    <h1 className=" font-semibold"> Abukar Ibrahim Mohamed </h1>
-                </div>
-                <div className="absolute flex items-center gap-2 right-4 top-8 ">
-                    <FaFileDownload className="text-[22px]" />
-                    <h1 className="font-semibold"> Download File </h1>
-                </div>
-                 <div className="flex items-center mt-5 gap-2">
-                    <ul className="font-semibold  ">
-                        <li> From: </li>
-                        <li> Date: </li>
-                        <li> To: </li>
-                        <li> Title:</li>
-                        <li> Subject:</li>
-                    </ul>
-                    <ul>
-                        <li> CEO of iDan IT Solutions  </li>
-                        <li> July 1, 2023 </li>
-                        <li> Mohamed Omar Adam </li>
-                        <li> Software Engineer</li>
-                        <li> Permission Request <span className=" font-semibold">Accepted</span> </li>
-                    </ul>
-                 </div>
-                <p className="mt-3">
-                    Dear ,Khadija Al-Makhzoumi
-                    I am pleased to inform you that your request for permission to conduct [specific activity] has been approved. This approval is granted under the terms and conditions set forth in your application submitted on [submission date].
-                    We appreciate your initiative and commitment to [related cause or project]. Please ensure that all relevant guidelines are followed during the execution of this project.
-                    Best wishes for your endeavor.
-                </p>
-                <div className="flex items-center justify-between">
-                    <p className="mt-5">
-                        Sincerely, <br /> 
-                        Hamze Abdi Barre <br />
-                        Prime Minister
-                    </p>
-                    <BsQrCode className="text-8xl mt-5 mr-3 " />
-                </div>
-                <Link to="/workerDashboard"><FaArrowLeft className="text-2xl absolute left-5 mt-2 text-deepBlue hover:text-skyBlue" /></Link>
+    const [Notifications, setNotifications] = useState([])
+    const HandleGetNotification = () => {
+        axios.get("http://localhost:7000/requests/read").then((response) => {
+            setNotifications(response.data)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
 
-            </div>
-        </div>
-        </div>
+
+    const HandleDeleteNotification = (_id) => {
+        axios.delete(`http://localhost:7000/requests/delete/${_id}`).then(() => {
+            alert("Notification deleted successfully")
+        }).catch((error) => {
+            console.log(error)
+            alert("Error deleting notification")
+        })
+    }
+    useEffect (() => {
+        HandleGetNotification()
+    })
+    return <div className=" w-full h-screen">
+        <WorkerHeader />
+        {/* <ManagerSidebar /> */}
+        <Link to="/managerDashboard"><FaDeleteLeft className="text-[35px] text-[#6A6458] hover:text-[#211F1E] right-6 sm:right-14 top-24 absolute " /></Link>
+
+        <div className="sm:pl-[13%] pl-4 w-full pt-24 h-screen">
+                <h1 className="text-2xl font-semibold text-[#6A6458]"> Notifications </h1>
+                  {/* Message 1 */}
+                    {
+                        Notifications.map((QuickMessage) =>{
+                            return <div className=" w-[95%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#dad2c2] mt-3">
+                            <FaUserCircle className="text-4xl text-[#211F1E]" />
+                            <div className="leading-[20px]">
+                                <h1 className="text-[18px] font-semibold ml-2 text-[#211F1E]"> {QuickMessage.fullName} </h1>
+                                <p className="text-[14px] ml-2"> {QuickMessage.reason}</p>
+                            </div>
+                            <div className="flex gap-2 items-center text-sky-900  absolute right-7 sm:right-20">
+                                <MdDelete onClick={() => HandleDeleteNotification(QuickMessage._id)} className="text-[30px] text-[#211F1E] hover:text-[#6A6458]" />
+                                <Link to={`/workerMessageView/`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
+                                {/* <Link to={`/workerMessageView/${QuickMessage.ID}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link> */}
+                            </div>
+                        </div>
+                        })
+                    }
+    </div>
+    </div>
 }
 export default WorkerNotificationPage

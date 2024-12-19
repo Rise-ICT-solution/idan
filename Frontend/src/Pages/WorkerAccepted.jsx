@@ -5,27 +5,40 @@ import ManagerHeader from "../Components/ManagerHeader"
 import ManagerSidebar from "../Components/ManagerSidebar"
 import { useEffect, useState } from "react";
 import axios from "axios";
-function PendingRequests (){
+function WorkerAcceptedRequests (){
 
-    const [allPendingRequests, setAllPendingRequests] = useState([])
-    
+    const [AcceptedRequests, setAcceptedRequests] = useState([])
+    const [statusUpdate, setStatusUpdate] = useState("")
+
+    // Function oo update gareenaayo xaalada qofka
+    // const updateUserStatus = (id) => {
+    //     axios.put(`http://localhost:7000/update/status/${id}`, {
+    //         "status": "Approved"
+    //     }).then((res) => {
+    //         if(res.data.massage){
+    //             alert("Status has been updated")
+    //         }
+    //     }).catch((err) => console.log(err))
+    // }
+
+
     const getAllPendingRequests = () => {
-            axios.get("http://localhost:7000/requests/read").then((res) => {
-                setAllPendingRequests(res.data)
-            }).catch((err) => {
-                console.log(err)
-            })
-        }
-    
-        useEffect(() => {
-            getAllPendingRequests()
-        },[])
+        axios.get("http://localhost:7000/requests/read").then((res) => {
+            setAcceptedRequests(res.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    useEffect(() => {
+        getAllPendingRequests()
+    },[])
 
     return <div className="w-full h-screen bg-lightBlue">
         <ManagerHeader />
         <ManagerSidebar />
         <div className="ml-12">
-            <h1 className=" text-center text-3xl font-semibold text-[#3b3832] pt-[6%]"> Pending Requests </h1>
+            <h1 className=" text-center text-3xl font-semibold text-[#3b3832] pt-[6%]"> Worker Accepted Requests </h1>
             <Link to="/managerDashboard"><FaDeleteLeft className="text-[40px] text-[#3b3832] hover:text-[#6A6458] right-36 mt-[-33px] absolute " /></Link>
 
             <div className="w-full  ml-[15%] top-58 absolute  mt-10 max-w-4xl  bg-white rounded-lg shadow-md ">
@@ -43,14 +56,14 @@ function PendingRequests (){
                     </thead>
                     <tbody className="bg-white">
                         {
-                            allPendingRequests.map((requestInfo, index) => {
+                            AcceptedRequests.map((requestInfo, index) => {
                             return <tr className="border-b border border-gray-300">
                             <td className="p-3 border text-center border-gray-500"> {index + 1}</td>
                             <td className="p-3 border text-center border-gray-500"> {requestInfo.ID} </td>
                             <td className="p-3 border text-center border-gray-500"> {requestInfo.fullName} </td>
                             <td className="p-3 border text-center border-gray-500"> <span className="text-white bg-[#6A6458]  rounded-[5px] px-3 py-1"> {requestInfo.status} </span> </td>
                             <td className="p-3 border text-center border-gray-500"> {requestInfo.destination}  </td> {/* make the world range 5 word +*/}
-                            <td className="p-3 border text-center border-gray-500"> <span className="text-[#6A6458] underline hover:text-black font-semibold rounded-full px-2 py-1"><Link to={`/managerMessageView/${requestInfo._id}`}>View more </Link></span> </td>
+                            <td className="p-3 border text-center border-gray-500"> <span className="text-[#6A6458] underline hover:text-black font-semibold rounded-full px-2 py-1"><Link to={`/managerMessageView/${requestInfo.ID}`}>View more </Link></span> </td>
                         </tr>
                             })
                         }
@@ -61,4 +74,4 @@ function PendingRequests (){
         </div>
     </div>
 }
-export default PendingRequests
+export default WorkerAcceptedRequests

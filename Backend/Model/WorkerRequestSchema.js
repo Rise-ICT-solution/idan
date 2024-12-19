@@ -2,18 +2,18 @@ const mongoose = require("mongoose")
 
 const WorkerRequest = mongoose.Schema({
 
-    name: {
+    fullName: {
         type: String,
-        required: true
+        required: false
     },
 
     ID: {
         type: String,
-        required: true
+        required: false
     },
     title: {
         type: String,
-        required: true
+        required: false
     },
     startDate:{
         type: Date,
@@ -34,8 +34,19 @@ const WorkerRequest = mongoose.Schema({
     },
     status:{
         type: String,
-        default: "pending"
-    }
+        enum: ["pending", "approved", "rejected"],
+        default: "pending",
+        required: true,
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now
+    },
+    appliedAt:{
+        type: Date,
+        default: Date.now
+    },
+    
 
 })
 
