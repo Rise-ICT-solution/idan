@@ -25,16 +25,16 @@ const HandleClose = () => {
     setIsUserOpen(false)
 }
     return <div> 
-    <div className="w-full max-w-full fixed pl-[15%]    h-[70px] px-[50px] items-center flex justify-between  ">
-        <div className="flex  ">
+    <div className="w-full  fixed pl-[18%] bg-[#DADADA]   h-[70px] px-[130px] items-center flex justify-between  ">
+        <div className="flex   ">
             <input type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
             <IoIosSearch className="text-[22px] text-black ml-2 absolute mt-[10px]" />
         </div>
         <div className="flex items-center text-white gap-3  ">
             {/* <Link to="/workerForm"><FaSquarePlus className="text-2xl hover:text-deepBlue" /></Link> */}
-            <Link to="/managerNotification"><IoIosNotifications className="text-3xl text-[#6A6458] hover:text-[#27241f]"  /></Link>
-            <FaUser style={{display: IsUserOpen ? "none" : ""}} onClick={HandleOpen} className="text-2xl  text-[#6A6458] hover:text-[#27241f]"  />
-            <FaUser style={{display: IsUserOpen ? "block" : "none"}} onClick={HandleClose} className="text-2xl hidden  text-[#6A6458] hover:text-[#27241f]"  />
+            <Link to="/managerNotification"><IoIosNotifications className="text-3xl text-[#0e0e0e] hover:text-[#008081] "  /></Link>
+            <FaUser style={{display: IsUserOpen ? "none" : ""}} onClick={HandleOpen} className="text-2xl  text-[#0e0e0e] hover:text-[#008081] "  />
+            <FaUser style={{display: IsUserOpen ? "block" : "none"}} onClick={HandleClose} className="text-2xl hidden  text-[#0e0e0e] hover:text-[#008081] "  />
         </div>
     </div>
     

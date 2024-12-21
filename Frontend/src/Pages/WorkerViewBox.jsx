@@ -2,9 +2,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import WorkerHeader from "../Components/WorkerHeader";
 import { FaRegCircleUser } from "react-icons/fa6"; // Assuming the same icon
 import {jsPDF} from "jspdf"
+import WorkerSideBar from "../Components/WorkerSideBar";
 
 function WorkerViewBox() {
   const params = useParams();
@@ -76,14 +76,14 @@ function WorkerViewBox() {
 
   return (
     <div>
-      <WorkerHeader />
-      <div className="w-full h-screen">
-        <div className="w-[700px] absolute px-[20px] rounded-lg pt-[20px] mt-5 ml-[20%] h-[550px] shadow-[#6A6458]">
-          <h1 className="text-center text-[#3b3832] font-semibold text-[20px]">More Details</h1>
+      <WorkerSideBar />
+      <div className="w-full bg-[#DADADA] h-screen">
+        <div className="w-[450px] bg-white absolute px-[60px] rounded-md pt-[20px] mt-5 ml-[35%] h-[500px] shadow-[#6A6458]">
+          <h1 className="text-center text-[#017779] font-semibold text-[20px]">More Details</h1>
           <div className="mt-4 gap-5">
             <div className="flex gap-2 items-center ">
               <FaRegCircleUser className="w-8 h-6" />
-              <h1 className="font-semibold text-lg"> {ViewMore.name} </h1>
+              <h1 className="font-semibold text-lg"> {ViewMore.fullName} </h1>
             </div>
             <div className="flex mt-6 gap-10">
               <ul className="font-semibold leading-[30px]">
@@ -109,29 +109,23 @@ function WorkerViewBox() {
               </ul>
             </div>
             <div className="">
-              <h1 className="mt-1 font-semibold">Permission Status:</h1>
+              <h1 className="mt-1 font-semibold">Permission reason:</h1>
               <textarea
-                value={ViewMore.status}
+                value={ViewMore.reason}
                 className="w-[360px] border-black ml-[-5px] h-[75px] outline-none px-[6px]"
                 placeholder="Enter your reason"
                 readOnly
               ></textarea>
-              <h1 className="mt-1 font-semibold">Manager Comment:</h1>
-              <textarea
-                value={ViewMore.comment}
-                className="w-[360px] border-black ml-[-5px] h-[75px] outline-none px-[6px]"
-                placeholder="Manager's comment"
-                readOnly
-              ></textarea>
-              <div className="flex ml-[56%] gap-10">
-                <button className="mt-1 w-[120px] h-[35px] rounded-[8px] bg-[#3b3832] hover:bg-[#6A6458] text-white">
+              {/* <h1 className="mt-1 font-semibold">Manager Comment:</h1>
+              <textarea value={ViewMore.comment} className="w-[360px] border-black ml-[-5px] h-[75px] outline-none px-[6px]"
+                placeholder="Manager's comment" readOnly >
+              </textarea> */}
+              <div className="flex mt-5 gap-10">
+                <button className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white">
                   {ViewMore.status}
                 </button>
                 <button
-                  onClick={generatePDF}
-                  className="mt-1 w-[120px] h-[35px] rounded-[8px] bg-[#3b3832] hover:bg-[#6A6458] text-white"
-                >
-                  Download PDF
+                  onClick={generatePDF} className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white" > Download PDF 
                 </button>
               </div>
             </div>

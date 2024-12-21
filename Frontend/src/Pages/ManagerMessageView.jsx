@@ -55,11 +55,11 @@ function ManagerMessageView (){
     },[])
 
 
-    return  <div>
+    return  <div className="bg-[#DADADA] w-full h-screen">
         <ManagerSidebar />
-    <div className="w-full h-screen">
+    <div className=" ">
         
-        <div className="w-[700px] absolute px-[20px] rounded-lg pt-[20px]  mt-5 ml-[20%] h-[550px]  shadow-[#6A6458]">
+        <div className="w-[450px] absolute px-[50px] bg-[#F2F2F2] rounded-lg pt-[20px]  mt-3 ml-[35%] h-[550px]  shadow-[#6A6458]">
             <h1 className="text-center text-[#3b3832] font-semibold text-[20px]"> More Details </h1>
             <div className="mt-4 gap-5">
                 <div className="flex gap-2 items-center ">
@@ -67,7 +67,7 @@ function ManagerMessageView (){
                     <h1 className=" font-semibold text-lg "> {getMessage.fullName} </h1>
                 </div>
                 <div className="flex mt-6 gap-10">
-                    <ul className="font-semibold leading-[30px]">
+                    <ul className="font-semibold leading-[40px]">
                         {/* <li>Name</li> */}
                         {/* <li>ID</li> */}
                         <li>Title</li>
@@ -76,7 +76,7 @@ function ManagerMessageView (){
                         <li>End Date</li>
                         <li>Duration </li>
                     </ul>
-                    <ul className="leading-[30px] ml-[-30px] ">
+                    <ul className="leading-[40px] ml-[-30px] ">
                         {/* <li> : </li> */}
                         {/* <li> : </li> */}
                         <li> : </li>
@@ -85,7 +85,7 @@ function ManagerMessageView (){
                         <li> : </li>
                         <li> : </li>
                     </ul>
-                    <ul className=" leading-[30px] ml-10">
+                    <ul className=" leading-[40px] ml-10">
                         {/* <li>{getMessage.fullName}</li> */}
                         {/* <li>{getMessage.ID}</li> */}
                         <li>{getMessage.title}</li>
@@ -96,11 +96,11 @@ function ManagerMessageView (){
                     </ul> 
                 </div>
                 <div className=" ">
-                    <h1 className="mt-1 font-semibold"> Permission Reason : </h1>
+                    <h1 className="mt-1 mb-2 font-semibold"> Permission Reason : </h1>
                     <textarea value={getMessage.reason} className="w-[360px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea>
-                    <h1 className="mt-1 font-semibold"> Manager Comment : </h1>
-                    <textarea value={comment} onChange={(event) => setComment(event.target.value)} className="w-[360px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea>
-                    <div className="flex ml-[56%] gap-10">
+                    {/* <h1 className="mt-1 font-semibold"> Manager Comment : </h1>
+                    <textarea value={comment} onChange={(event) => setComment(event.target.value)} className="w-[360px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea> */}
+                    <div className="flex mt-10 gap-28">
                         <button value="Approved" onClick={ (event) => HandleUpdateStatus(getMessage._id, event.target.value) }  className="mt-1 w-[120px] h-[35px] rounded-[8px] bg-[#3b3832] hover:bg-[#6A6458] text-white"> Approved </button>
                         <button value="Rejected" onClick={ (event) => HandleUpdateStatus(getMessage._id, event.target.value)}  className="mt-1 w-[120px] h-[35px] rounded-[8px] hover:bg-[#eb3333] bg-[#FC6161] text-white"> Rejected </button>
                     </div>

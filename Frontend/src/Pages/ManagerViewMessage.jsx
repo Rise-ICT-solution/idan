@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import WorkerHeader from "../Components/WorkerHeader";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaUserTie } from "react-icons/fa6";
 import { BsQrCode } from "react-icons/bs";
+import ManagerSidebar from "../Components/ManagerSidebar";
 // import { FaFileDownload } from "react-icons/fa";
 
 
@@ -10,7 +10,7 @@ import { BsQrCode } from "react-icons/bs";
 
 function ManagerViewNotification (){
     return <div className="w-full bg-fixed overflow-hidden h-screen bg-lightBlue">
-        <WorkerHeader />
+        <ManagerSidebar />
         <div className="w-full ml-[14%] px-[20px] py-[10px] h-[480px] top-58 absolute   border-black  mt-24 max-w-4xl  bg-white rounded-xl shadow-md ">
             <div className="mt-5">
                 <div className="flex gap-2 items-center">

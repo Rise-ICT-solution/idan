@@ -38,16 +38,20 @@ function ManagerNotificationPage (){
         HandleGetNotification()
     })
     return <div className=" w-full h-screen">
-        <ManagerHeader />
+        {/* <ManagerHeader /> */}
         <ManagerSidebar />
-        <Link to="/managerDashboard"><FaDeleteLeft className="text-[35px] text-[#6A6458] hover:text-[#211F1E] right-14 top-24 absolute " /></Link>
 
-        <div className="pl-[13%] w-full pt-24 h-screen">
-                <h1 className="text-2xl font-semibold text-[#6A6458]"> Notifications </h1>
+        <div className="pl-[20%] w-full pt-5 h-screen">
+            <div className="justify-between w-full flex items-center">
+                <h1 className="text-2xl font-semibold text-[#017779]"> Notifications </h1>
+                <Link to="/managerDashboard"><FaDeleteLeft className="text-[30px] ml-[-100px] text-[#0E0E0E] " /></Link>
+            </div>
+                {/* <h1 className="text-2xl font-semibold text-[#6A6458]"> Notifications </h1>
+                <Link to="/managerDashboard"><FaDeleteLeft className="text-[35px] text-[#6A6458] hover:text-[#211F1E] right-14 top-24 absolute " /></Link> */}
                   {/* Message 1 */}
                     {
                         Notifications.map((QuickMessage) =>{
-                            return <div className=" w-[95%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#dad2c2] mt-3">
+                            return <div className=" w-[95%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#BEDDDF] mt-3">
                             <FaUserCircle className="text-4xl text-[#211F1E]" />
                             <div className="leading-[20px]">
                                 <h1 className="text-[18px] font-semibold ml-2 text-[#211F1E]"> {QuickMessage.fullName} </h1>
@@ -55,7 +59,7 @@ function ManagerNotificationPage (){
                             </div>
                             <div className="flex gap-2 items-center text-sky-900  absolute right-20">
                                 <MdDelete onClick={() => HandleDeleteNotification(QuickMessage._id)} className="text-[30px] text-[#211F1E] hover:text-[#6A6458]" />
-                                <Link to={`/managerMessageView/${QuickMessage.ID}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
+                                <Link to={`/managerMessageView/${QuickMessage._id}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
                             </div>
                         </div>
                         })

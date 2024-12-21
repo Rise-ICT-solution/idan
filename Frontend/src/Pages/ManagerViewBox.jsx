@@ -1,8 +1,8 @@
-import WorkerHeader from "../Components/WorkerHeader"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import WorkerSideBar from "../Components/WorkerSideBar"
 
 function ManagerViewBox (){
     const params = useParams()
@@ -36,7 +36,7 @@ function ManagerViewBox (){
     })
     return <div className="w-full h-screen">
 
-        <WorkerHeader />
+        <WorkerSideBar />
         <div className="w-[400px] absolute px-[20px] rounded-lg pt-[20px] mt-24 ml-[30%] h-[400px] shadow-lg shadow-[#6A6458]">
             <h1 className="text-center text-[#3b3832] font-semibold text-[20px]"> More Details </h1>
             <div className="mt-6 flex items-center gap-5">

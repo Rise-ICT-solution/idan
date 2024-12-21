@@ -1,5 +1,3 @@
-import ManagerHeader from "../Components/ManagerHeader"
-import ManagerSidebar from "../Components/ManagerSidebar"
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -7,7 +5,7 @@ import { MdOutlineMessage } from "react-icons/md";
 import { FaDeleteLeft } from "react-icons/fa6";
 import axios from "axios"
 import { useState, useEffect } from "react";
-import WorkerHeader from "../Components/WorkerHeader";
+import WorkerSideBar from "../Components/WorkerSideBar";
 
 
 function WorkerNotificationPage (){
@@ -33,24 +31,26 @@ function WorkerNotificationPage (){
         HandleGetNotification()
     })
     return <div className=" w-full h-screen">
-        <WorkerHeader />
+        <WorkerSideBar />
         {/* <ManagerSidebar /> */}
-        <Link to="/managerDashboard"><FaDeleteLeft className="text-[35px] text-[#6A6458] hover:text-[#211F1E] right-6 sm:right-14 top-24 absolute " /></Link>
 
-        <div className="sm:pl-[13%] pl-4 w-full pt-24 h-screen">
-                <h1 className="text-2xl font-semibold text-[#6A6458]"> Notifications </h1>
+        <div className="sm:pl-[27%] pl-4 w-full pt-8 h-screen">
+            <div className="justify-between w-[740px] flex items-center">
+                <h1 className="text-2xl font-semibold text-[#017779]"> Notifications </h1>
+                <Link to="/workerDashboard"><FaDeleteLeft className="text-[30px] text-[#0E0E0E] " /></Link>
+            </div>
                   {/* Message 1 */}
                     {
                         Notifications.map((QuickMessage) =>{
-                            return <div className=" w-[95%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#dad2c2] mt-3">
-                            <FaUserCircle className="text-4xl text-[#211F1E]" />
+                            return <div className=" w-[80%] flex px-[10px] items-center gap-2 h-[50px] rounded-lg bg-[#BEDDDF] mt-3">
+                            <FaUserCircle className="text-4xl text-[#0E0E0E]" />
                             <div className="leading-[20px]">
-                                <h1 className="text-[18px] font-semibold ml-2 text-[#211F1E]"> {QuickMessage.fullName} </h1>
+                                <h1 className="text-[18px] font-semibold ml-2 text-[#0E0E0E]"> {QuickMessage.fullName} </h1>
                                 <p className="text-[14px] ml-2"> {QuickMessage.reason}</p>
                             </div>
-                            <div className="flex gap-2 items-center text-sky-900  absolute right-7 sm:right-20">
-                                <MdDelete onClick={() => HandleDeleteNotification(QuickMessage._id)} className="text-[30px] text-[#211F1E] hover:text-[#6A6458]" />
-                                <Link to={`/workerMessageView/`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link>
+                            <div className="flex gap-2 items-center text-sky-900  absolute right-7 sm:right-56">
+                                <MdDelete onClick={() => HandleDeleteNotification(QuickMessage._id)} className="text-[30px] text-[#0E0E0E] " />
+                                <Link to={`/workerMessageView/`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#0E0E0E]" /></Link>
                                 {/* <Link to={`/workerMessageView/${QuickMessage.ID}`}><MdOutlineMessage className="text-[28px]  hover:text-[#211F1E] text-[#211F1E]" /></Link> */}
                             </div>
                         </div>

@@ -2,50 +2,53 @@ import { FaUserPlus } from "react-icons/fa6";
 import { FaUserTie } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { HiUsers } from "react-icons/hi";
-import { FaUsers } from "react-icons/fa6";
-import { MdSpaceDashboard } from "react-icons/md";
+import { LiaUserTieSolid } from "react-icons/lia";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { TbUsersGroup } from "react-icons/tb";
+import { LiaUserPlusSolid } from "react-icons/lia";
+import { TbUserPlus } from "react-icons/tb";
+
+
+
 
 
 function ManagerSidebar (){
-    return <div className="h-screen fixed z-10 pt-7   w-[10%]     border-r-[#6A6458] border-r-2 border-solid  ">
-        <h1 className=" text-[25px] text-[#6A6458] pb-5 sm:border-b-solid sm:border-b-2 sm:border-b-[#6A6458] w-full font-semibold text-center font-Roboto"> iDan </h1>
-        <div className="mt-6 ">
+    return <div className="bg-[#0E0E0E] fixed   sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]  ">
+        <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold text-center font-Roboto"> iDan </h1>
+        <div className="sm:block flex items-center sm:mt-10 px-[10px]">
+          
             <Link to="/managerDashboard">
-                <div className="  mb-8   px-[10px]">
-                    <MdSpaceDashboard className="text-[30px] ml-10 text-center  text-[#6A6458] " />
-                    <h1 className="text-[17px] text-center font-semibold mt-1 text-[#6A6458] "> Dashboard </h1>
+                <div className="flex gap-2 items-center hover:bg-[#008081] h-[40px] rounded-[10px] ">
+                    <LuLayoutDashboard className="text-[28px] ml-5  text-white" />
+                    <h1 className="text-white text-[18px]">Dashboard</h1>
                 </div>
             </Link>
             <Link to="/totalAdmins">
-                <div className="  mb-8  px-[10px]">
-                    <HiUsers className="text-[30px] ml-10 text-center  text-[#6A6458] " />
-                    <h1 className="text-[17px] text-center font-semibold mt-1 text-[#6A6458] "> All Admins </h1>
+                <div className="flex gap-2 items-center mt-5 hover:bg-[#008081] h-[40px] rounded-[10px] ">
+                    <LiaUserTieSolid className="text-[28px] ml-5  text-white" />
+                    <h1 className="text-white text-[18px]">All admins</h1>
                 </div>
             </Link>
             <Link to="/totalWorkers">
-                <div className="  mb-8  px-[10px]">
-                    <FaUsers className="text-[30px] ml-10 text-center  text-[#6A6458] " />
-                    <h1 className="text-[17px] text-center font-semibold mt-1 text-[#6A6458] "> All Workers </h1>
+                <div className="flex gap-2 items-center  mt-5 hover:bg-[#008081] h-[40px] rounded-[10px] ">
+                    <TbUsersGroup className="text-[28px] ml-5  text-white" />
+                    <h1 className="text-white text-[18px]">All workers</h1>
                 </div>
             </Link>
             <Link to="/addAdmin">
-                <div className="  mb-8  px-[10px]">
-                    <FaUserTie className="text-[30px] ml-10 text-center  text-[#6A6458] " />
-                    <h1 className="text-[17px] text-center font-semibold mt-1 text-[#6A6458] "> Add Admin </h1>
+                <div className="flex gap-2 items-center mt-5 hover:bg-[#008081] h-[40px] rounded-[10px] ">
+                    <LiaUserPlusSolid className="text-[28px] ml-5  text-white" />
+                    <h1 className="text-white text-[18px]">Add Admin</h1>
                 </div>
             </Link>
             <Link to="/addWorker">
-                <div className="  mb-8  px-[10px]">
-                    <FaUserPlus className="text-[30px] ml-10 text-center  text-[#6A6458] " />
-                    <h1 className="text-[17px] text-center font-semibold mt-1 text-[#6A6458] "> Add Worker </h1>
+                <div className="flex gap-2 items-center mt-5 hover:bg-[#008081] h-[40px] rounded-[10px] ">
+                    <TbUserPlus className="text-[28px] ml-5  text-white" />
+                    <h1 className="text-white text-[18px]">Add Worker</h1>
                 </div>
             </Link>
-        {/* <Link to="/addWorker">
-        <div className="  group justify-center   mt-10 px-[10px]">
-        <FaUserPlus className="text-[21px]  text-white " />
-        <h1 className="text-[17px] font-semibold  text-white "> Add Worker </h1>
-        </div>
-        </Link> */}
+        
+           
         </div>
     </div>
 }

@@ -29,18 +29,23 @@ function LoginPage (){
             console.log(err);
         })
     }
-    return <div className="w-full fixed h-screen bg-lightGray">
-        <div className="w-full h-[80px] bg-[#6A6458]">
-            <h1 className="text-center text-3xl text-white font-semibold pt-5"> iDan</h1>
-        </div>
-     <div className="w-full  h-screen flex my-40 sm:my-20  justify-center ">
-        <div className="bg-white pt-[15px] shadow-lg px-4 w-[350px] h-[280px] rounded-[5px]">
-            <h1 className="text-center  text-[25px] mb-5 font-Roboto"> Worker Login </h1>
-            <input value={ID} onChange={(event) => setID(event.target.value)} className="w-[310px] px-1 h-[40px] outline-none rounded-[5px] border-2 border-[#6A6458] " type="text" placeholder="Enter your ID" />
-            <input value={Password} onChange={(event) => setPassword(event.target.value)} className="w-[310px] px-1 mt-5 h-[40px] outline-none rounded-[5px] border-2 border-[#6A6458] " type="password" placeholder="Enter your password" />
-           <button onClick={HandleWorker} className="w-[310px] h-[35px] mt-5 text-white hover:bg-transparent hover:border-2 hover:border-[#6A6458] hover:text-[#6A6458] hover:font-semibold bg-[#6A6458] rounded-[5px]"> Submit </button>
-        </div>
+    return <div className="w-full fixed h-screen bg-[#BEDDDF]">
+    {/* <div className="w-full h-[80px] bg-[#0E0E0E]">
+        <h1 className="text-center text-3xl text-white font-semibold pt-5"> iDan</h1>
+    </div> */}
+ <div className="w-full  h-screen flex my-40 sm:my-[110px]  justify-center ">
+    <div className="bg-white pt-[15px] shadow-lg px-4 w-[350px] h-[350px] rounded-[5px]">
+        <h1 className="  text-[30px] font-semibold text-[#0E0E0E]  "> Sign in </h1>
+        <p className="  text-gray-600 text-[14px] pr-[20px]"> Log in with your <span className="font-semibold text-black">Employee ID and password </span> to proceed.</p>
+        <form className="mt-4">
+            <label className=" text-[15px]"> Worker ID </label>
+            <input value={ID} onChange={(event) => setID(event.target.value)} className="w-[310px] px-1 h-[40px] outline-none  mb-2 rounded-[5px] border-2 border-[#008081] " type="text" />
+            <label className=" text-[15px]"> Worker Password </label>
+            <input value={Password} onChange={(event) => setPassword(event.target.value)} className="w-[310px] px-1  h-[40px] outline-none rounded-[5px] border-2 border-[#008081] " type="password" />
+            <button onClick={HandleWorker} className="w-[310px] h-[35px] mt-7 text-white  hover:bg-[#0E0E0E] hover:text-white  bg-[#008081] rounded-[5px]"> Submit </button>
+        </form>
     </div>
-    </div>
+</div>
+</div>
 }
 export default LoginPage

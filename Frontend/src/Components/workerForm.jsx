@@ -4,7 +4,7 @@ import { TiBackspaceOutline } from "react-icons/ti";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import WorkerHeader from "./WorkerHeader";
+import WorkerSideBar from "./WorkerSideBar";
 
 function WorkerForm() {
     const [StartDate, setStartDate] = useState("");
@@ -60,39 +60,39 @@ function WorkerForm() {
         }
     }, [StartDate, EndDate]); 
     return <div>
-        <WorkerHeader />
-        <div className="bg-lightBlue w-full h-screen py-12">
-            <div className="w-[350px] ml-5 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[470px] rounded-[8px] bg-white ">
+        <WorkerSideBar />
+        <div className="bg-[#D9D9D9] w-full h-screen py-12">
+            <div className="w-[370px] px-2 ml-5 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-[#F2F2F2] ">
                 <form className="pt-4">
                     <div className="flex">
                         <Link to="/workerDashboard">
-                            <TiBackspaceOutline className="absolute text-[25px] mt-2 text-[#6A6458] hover:text-[#514c43] ml-[310px]" />
+                            <TiBackspaceOutline className="absolute text-[25px] mt-2 text-[#008081] hover:text-[#1a4343] ml-[310px]" />
                         </Link>
-                        <h1 className="text-center text-[#6A6458] ml-[80px]  font-Roboto text-[25px]">
+                        <h1 className="text-center text-[#008081] ml-[80px]  font-Roboto text-[25px]">
                             Apply Permission
                         </h1>
                     </div>
-                    <div className="px-6 ">
+                    <div className="px-[25px] ">
                         <div>
-                            <div className="flex mt-1 justify-between">
-                                <label className="text-deepBlue  ml-1">Start Date</label>
-                                <label className="text-deepBlue  mr-[74px]">End Date</label>
+                            <div className="flex mt-3 justify-between">
+                                <label className="text-deepBlue  ">Start Date</label>
+                                <label className="text-deepBlue  mr-[80px]">End Date</label>
                             </div>
-                            <input value={StartDate} onChange={(event) => setStartDate(event.target.value)} type="date" className="w-[140px] h-[40px] text-gray-400   bg-lightBlue outline-none rounded-[5px] px-2" />
-                            <input value={EndDate} onChange={(event) => setEndDate(event.target.value)} type="date" className="w-[140px] h-[40px] text-gray-400 bg-lightBlue outline-none rounded-[5px] px-2 ml-5 mb-1" />
+                            <input value={StartDate} onChange={(event) => setStartDate(event.target.value)} type="date" className="w-[140px] h-[40px] text-gray-400   border-2 border-[#008081] bg-lightBlue outline-none rounded-[5px] px-2" />
+                            <input value={EndDate} onChange={(event) => setEndDate(event.target.value)} type="date" className="w-[140px] h-[40px] text-gray-400 border-2 border-[#008081] bg-lightBlue outline-none rounded-[5px] px-2 ml-5 mb-1" />
                         </div>
                         <div className="mt-3">
                             <div className="flex mt-1 justify-between">
                                 <label className="text-deepBlue  ml-1">Duration</label>
-                                <label className="text-deepBlue  mr-[55px]">Destination</label>
+                                <label className="text-deepBlue  mr-[62px]">Destination</label>
                             </div>
-                            <input value={Duration + " days"} readOnly type="text" placeholder="Duration of trip" className="w-[140px] h-[40px] text-deepBlue bg-lightBlue outline-none rounded-[5px] px-2" />
-                            <input value={Destination} onChange={(event) => setDestination(event.target.value)} type="text" placeholder="Trip Destination" className="w-[140px] h-[40px] text-deepBlue bg-lightBlue outline-none rounded-[5px] px-2 ml-5 mb-1" />
+                            <input value={Duration + " days"} readOnly type="text" placeholder="Duration of trip" className="w-[140px] h-[40px] text-deepBlue bg-lightBlue border-2 border-[#008081] outline-none rounded-[5px] px-2" />
+                            <input value={Destination} onChange={(event) => setDestination(event.target.value)} type="text" placeholder="Trip Destination" className="w-[140px] border-2 border-[#008081] h-[40px] text-deepBlue bg-lightBlue outline-none rounded-[5px] px-2 ml-5 mb-1" />
                         </div>
                         <div className="mt-3">
                             <label className="text-deepBlue  ">Permission Reason</label>
-                            <textarea value={PermissionReason} onChange={(event) => setPermissionReason(event.target.value)} className="w-[300px] h-[140px] text-deepBlue bg-lightBlue outline-none rounded-[5px] px-2 mt-1 py-1"></textarea>
-                            <button onClick={HandlePostRequest} className="w-[300px] h-[40px] text-white bg-[#6A6458] hover:bg-[#514c43] rounded-[5px] mt-5">Submit</button>
+                            <textarea value={PermissionReason} onChange={(event) => setPermissionReason(event.target.value)} className="w-[300px] h-[140px] text-deepBlue border-2 border-[#008081] bg-lightBlue outline-none rounded-[5px] px-2 mt-1 py-1"></textarea>
+                            <button onClick={HandlePostRequest} className="w-[300px] h-[40px] text-white bg-[#008081] hover:bg-[#0E0E0E] rounded-[5px] mt-5">Submit</button>
                         </div>
                     </div>
                 </form>

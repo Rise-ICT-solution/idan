@@ -34,7 +34,7 @@ function App (){
     <Route path="/workerMessageView" element={<WorkerMessageView/>} />
     <Route path="/managerNotification" element={<ManagerNotificationPage/>} />
     <Route path="/workerNotification" element={<WorkerNotificationPage/>} />
-    <Route path="/workerViewMore" element={<WorkerViewMore/>} />
+    <Route path="/workerViewMore/:id" element={<WorkerViewMore/>} />
     <Route path="/workerViewBox/:id" element={<WorkerViewBox/>} />
     <Route path="/adminLogin" element={<ManagerLoginPage/>} />
     <Route path="/managerDashboard" element={<ManagerDashboard/>} />
