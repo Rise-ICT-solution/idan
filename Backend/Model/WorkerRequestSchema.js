@@ -38,11 +38,11 @@ const WorkerRequest = mongoose.Schema({
         default: "pending",
         required: true,
     },
-    createdAt:{
+    requestedAt:{
         type: Date,
         default: Date.now
     },
-    appliedAt:{
+    approvedAt:{
         type: Date,
         default: Date.now
     },

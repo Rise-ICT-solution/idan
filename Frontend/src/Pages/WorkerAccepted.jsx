@@ -65,8 +65,16 @@ function WorkerAcceptedRequests (){
                             <td className="p-4 text-center"> {requestInfo.fullName} </td>
                             <td className="p-4 text-center "> <span className="text-[#0E0E0E]"> {requestInfo.status} </span> </td>
                             <td className="p-4 text-center "> {requestInfo.destination}  </td> {/* make the world range 5 word +*/}
-                            <td className="p-4 text-center"> <span className="text-[#0E0E0E] underline hover:text-[#008081] font-semibold"><Link to={`/workerViewMore/${requestInfo.ID}`}>View more </Link></span> </td>
-                        </tr>
+                            <td className="p-4 text-center"> 
+                                <Link to={ requestInfo.status === "Approved" || requestInfo.status === "Rejected" 
+                                ? `/workerMessageView/${requestInfo._id}` 
+                                : `/workerViewBox/${requestInfo._id}`
+                                }> 
+                                    <button className="px-4 py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                                        View More
+                                    </button>
+                                </Link>  
+                            </td>                        </tr>
                             })
                         }
                     </tbody>

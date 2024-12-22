@@ -16,15 +16,31 @@ function ManagerDashboard (){
     const params = useParams()
     const [PendingRequests, setPendingRequests] = useState([])
     const [Requests, setRequests] = useState([])
+    const [approvedCount, setApprovedCount] = useState(0); // State for approved requests count
+    const [pendingCount, setPendingCount] = useState(0);   // State for pending requests count
+    const [rejectedCount, setRejectedCount] = useState(0); // State for rejected requests count
     const getAllPendingRequests = () => {
         axios.get("http://localhost:7000/requests/read").then((res) => {
             const AllRequests = res.data;
-            setRequests(res.data)
-            setPendingRequests(AllRequests.filter((req) => req.status === "pending"))
+            setRequests(AllRequests);
+    
+            // Filter and count requests based on their status
+            const approvedRequests = AllRequests.filter(request => request.status.toLowerCase() === "approved");
+            const pendingRequests = AllRequests.filter(request => request.status.toLowerCase() === "pending");
+            const rejectedRequests = AllRequests.filter(request => request.status.toLowerCase() === "rejected");
+    
+            // Set counts for different statuses
+            setApprovedCount(approvedRequests.length);
+            setPendingCount(pendingRequests.length);
+            setRejectedCount(rejectedRequests.length);
+    
+            // Set pending requests to display in the table
+            setPendingRequests(pendingRequests);
         }).catch((err) => {
-            console.log(err)
-        })
+            console.log(err);
+        });
     }
+    
 
     useEffect(() => {
         getAllPendingRequests()
@@ -37,9 +53,9 @@ function ManagerDashboard (){
         <div className="pt-8  bg-[#F1F1F1]  mt-24 w-[950px] h-[screen rounded-xl pb-10 px-[20px]   sm:ml-[18%]">
             <h1 className="text-[20px]  font-semibold "> Dashboard Overview </h1>
             <div className="pt-4 sm:flex grid-cols-[160px_160px]  ml-12 grid sm:gap-16 mt-12 sm:mt-0 ">
-                <Link to="/pendingRequests"><OverView icon={ImSpinner3}  Users="Pending Requests" Count="0" /></Link>
-                <Link to="/acceptedRequests"><OverView icon={FaCheckDouble}  Users="Accepted Requests" Count="900" /></Link>
-                <Link to="/rejectedRequests"><OverView icon={FaUserSlash}  Users="Rejected Requests" Count="20000" /></Link>
+                <Link to="/pendingRequests"><OverView icon={ImSpinner3}  Users="Pending Requests" Count={pendingCount} /></Link>
+                <Link to="/acceptedRequests"><OverView icon={FaCheckDouble}  Users="Accepted Requests" Count={approvedCount} /></Link>
+                <Link to="/rejectedRequests"><OverView icon={FaUserSlash}  Users="Rejected Requests" Count={rejectedCount} /></Link>
             </div>
             <div className=" ml-7 mt-8 overflow-y-auto absolute ">
                 <h1 className="font-semibold text-[20px]"> Waiting Requests</h1>

@@ -42,6 +42,13 @@ Request.get("/requests/read", async (req, res) => {
     res.send(allRequests);
 });
 
+//an API that makes total count 
+
+Request.get("/requests/count", async (req,res) => {
+    const requestsCount = await WorkerRequestSchema.countDocuments()
+    res.send({requestsCount})
+})
+
 // Soo bandhig xogta user uu leeyahay kaliye
 
 // Route to get a single request by its ID
