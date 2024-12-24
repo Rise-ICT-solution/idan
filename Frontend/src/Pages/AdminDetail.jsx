@@ -34,7 +34,7 @@ function AdminDetail (){
         HandleSingleAdmin()
     })
     return <div className="bg-[#DADADA] w-full h-screen py-5">
-        <div className="w-[350px] ml-[35%] mt-6  shadow-lg  h-[500px] rounded-[20px] bg-white ">
+        <div className="w-[350px] ml-5 sm:ml-[35%] mt-20 sm:mt-6  shadow-lg  h-[500px] rounded-[20px] bg-white ">
             <form className="pt-4 ">
                 <div className="flex items-center justify-between px-[20px] ">
                     <h1 className=" text-center text-[#008081] ml-20  font-Roboto text-[25px]"> Admin Details </h1>

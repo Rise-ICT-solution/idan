@@ -62,7 +62,7 @@ function WorkerForm() {
     return <div>
         <WorkerSideBar />
         <div className="bg-[#D9D9D9] w-full h-screen py-12">
-            <div className="w-[370px] px-2 ml-5 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-[#F2F2F2] ">
+            <div className="w-[370px] px-2 ml-2 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-[#F2F2F2] ">
                 <form className="pt-4">
                     <div className="flex">
                         <Link to="/workerDashboard">

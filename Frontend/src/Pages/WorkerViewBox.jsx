@@ -33,20 +33,19 @@ function WorkerViewBox() {
       });
   };
 
-  // const HandleDeleteRequest = () => {
-  //   axios
-  //     .delete(`http://localhost:7000/request/delete/${params.id}`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       alert("Request has been deleted successfully");
-  //       calculateDuration(response.data.startDate, response.data.endDate); // Calculate duration when data is fetched
-  //       navigate("/workerDashboard");
-  //     })
-  //     .catch((err) => {
-  //       alert("Error in deleting request");
-  //       console.log(err);
-  //     });
-  // };
+  const HandleDeleteRequest = () => {
+    axios
+      .delete(`http://localhost:7000/request/delete/${params.bid}`)
+      .then((response) => {
+        console.log(response);
+        alert("Request has been deleted successfully");
+        navigate("/workerDashboard");
+      })
+      .catch((err) => {
+        alert("Error in deleting request");
+        console.log(err);
+      });
+  };
 
   const calculateDuration = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -78,7 +77,7 @@ function WorkerViewBox() {
     <div>
       <WorkerSideBar />
       <div className="w-full bg-[#DADADA] h-screen">
-        <div className="w-[450px] bg-white absolute px-[60px] rounded-md pt-[20px] mt-5 ml-[35%] h-[500px] shadow-[#6A6458]">
+        <div className="sm:w-[450px] w-[360px] ml-3 bg-white absolute px-10 sm:px-[60px] rounded-md pt-[20px] mt-20 sm:mt-5 sm:ml-[35%] h-[500px] shadow-[#6A6458]">
           <h1 className="text-center text-[#017779] font-semibold text-[20px]">More Details</h1>
           <div className="mt-4 gap-5">
             <div className="flex gap-2 items-center ">
@@ -112,7 +111,7 @@ function WorkerViewBox() {
               <h1 className="mt-1 font-semibold">Permission reason:</h1>
               <textarea
                 value={ViewMore.reason}
-                className="w-[360px] border-black ml-[-5px] h-[75px] outline-none px-[6px]"
+                className="sm:w-[360px] w-[300px] border-black ml-[-5px] h-[75px] outline-none px-[6px]"
                 placeholder="Enter your reason"
                 readOnly
               ></textarea>
@@ -125,7 +124,7 @@ function WorkerViewBox() {
                   {ViewMore.status}
                 </button>
                 <button
-                  onClick={generatePDF} className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white" > Download PDF 
+                  onClick={HandleDeleteRequest} className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white" > Delete 
                 </button>
               </div>
             </div>

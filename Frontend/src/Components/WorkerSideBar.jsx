@@ -29,19 +29,19 @@ const HandleClose = () => {
     }
 
     return <div> 
-    <div className=" bg-[#008081] fixed   sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]       ">
+    <div className=" bg-[#008081] fixed h-[60px]  sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]       ">
         <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold text-center font-Roboto"> iDan </h1>
         <div className=" sm:block flex items-center sm:mt-20 px-[10px]  ">
             <NavLink to="/workerDashboard">
-                <div className="flex gap-2 items-center hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
-                    <LuLayoutDashboard className="text-[28px] ml-5  text-white" />
-                    <h1 className="text-white text-[18px]">Dashboard</h1>
+                <div className="flex gap-2 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
+                    <LuLayoutDashboard className="sm:text-[28px] text-[30px] hover:text-black ml-5  text-white" />
+                    <h1 className="text-white hidden sm:flex text-[18px]">Dashboard</h1>
                 </div>
             </NavLink>
             <NavLink to="/workerForm">
-                <div className="flex gap-2 mt-4 items-center hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
-                    <LuMessageSquarePlus className="text-[27px] ml-5  text-white" />
-                    <h1 className="text-white text-[18px]">Create request</h1>
+                <div className="flex gap-2 sm:mt-4 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
+                    <LuMessageSquarePlus className="sm:text-[27px] text-[30px] hover:text-black ml-5  text-white" />
+                    <h1 className="text-white hidden sm:flex text-[18px]">Create request</h1>
                 </div>
             </NavLink>
 
@@ -52,15 +52,15 @@ const HandleClose = () => {
                 </div>
             </NavLink> */}
             
-            <div className="flex gap-2 mt-4 items-center hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
+            <div className="flex gap-2 sm:mt-4 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
                 <div className="ml-2 flex items-center sm:ml-0" onClick={() => setIsUserOpen(!IsUserOpen)}>
                     {IsUserOpen ? (
-                    <RiUserFill className="text-[28px] sm:ml-4 text-white" />
+                <RiUserFill className="sm:text-[28px] text-[30px]   sm:ml-4 text-white" />
                     ) : (
-                    <RiUserLine className="text-[28px] sm:ml-4 text-white" />
+                <RiUserLine className="sm:text-[28px] text-[30px]   sm:ml-4 text-white" />
                     )}
                 </div>
-                <h1 className="text-white text-[18px]">Profile</h1>
+                <h1 className="text-white hidden sm:flex text-[18px]">Profile</h1>
             </div>
         </div>
     </div>

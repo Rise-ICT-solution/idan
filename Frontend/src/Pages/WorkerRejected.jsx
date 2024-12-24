@@ -26,38 +26,38 @@ function WorkerRejectedRequests (){
     return <div className="w-full flex h-screen fixed bg-[#DADADA]">
         <WorkerSideBar />
         <div className="ml-20">
-            <div className="flex items-center justify-between w-[900px] ml-44 mt-10">
-                <h1 className=" text-center text-3xl ml-64 font-semibold "> Worker Rejected Requests </h1>
+            <div className="flex items-center justify-between w-[900px] sm:ml-44 mt-[80px] sm:mt-10">
+                <h1 className=" text-center sm:text-3xl ml-[-25px] text-2xl sm:ml-64 font-semibold "> Worker Rejected Requests </h1>
                 <Link to="/workerDashboard"><FaDeleteLeft className="text-[40px] text-[#0e0e0e] hover:text-[#008081]  " /></Link>
             </div>
-            <div className="w-full  ml-[15%] top-58 absolute  mt-10 max-w-4xl  bg-white rounded-lg shadow-md ">
+            <div className="sm:w-full ml-[-70px]  sm:ml-[15%] top-58 absolute w-[360px]  mt-4 max-w-4xl  bg-white rounded-lg shadow-md sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden ">
 
                 <table className="  w-full text-left border-collabse">
                         <thead>
                             <tr className="bg-[#008081]   text-white">
-                                <td className="p-4 text-center rounded-tl-lg"> No.</td>
-                                <td className="p-4  text-center"> Worker ID </td>
-                                <td className="p-4  text-center"> Name </td>
-                                <td className="p-4  text-center"> Status </td>
-                                <td className="p-4  text-center"> Destination </td>
-                                <td className="p-4  text-center rounded-tr-lg"> Action </td>
+                                <td className="sm:p-4 p-3 text-center rounded-tl-lg"> No.</td>
+                                <td className="sm:p-4 p-3  text-center"> ID </td>
+                                <td className="sm:p-4 p-3  text-center"> Name </td>
+                                <td className="sm:p-4 p-3  text-center"> Status </td>
+                                <td className="sm:p-4 p-3  text-center"> Destination </td>
+                                <td className="sm:p-4 p-3  text-center rounded-tr-lg"> Action </td>
                             </tr>
                         </thead>
                         <tbody className="bg-white">
                             {
                                 RejectedRequests.map((requestInfo, index) => {
                                 return <tr key={index}  className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"} border-b border-gray-300 hover:bg-gray-100`}>
-                                <td className="p-4 text-center "> {index + 1}</td>
-                                <td className="p-4 text-center"> {requestInfo.ID} </td>
-                                <td className="p-4 text-center"> {requestInfo.fullName} </td>
-                                <td className="p-4 text-center"> <span className="text-[#0E0E0E]   rounded-[5px] px-3 py-1"> {requestInfo.status} </span> </td>
-                                <td className="p-4 text-center"> {requestInfo.destination}  </td> {/* make the world range 5 word +*/}
-                                <td className="p-4 text-center"> 
+                                <td className="sm:p-4 p-2 text-center "> {index + 1}</td>
+                                <td className="sm:p-4 p-2 text-center"> {requestInfo.ID} </td>
+                                <td className="sm:p-4 p-2 text-center"> {requestInfo.fullName} </td>
+                                <td className="sm:p-4 p-2 text-center"> <span className="text-[#0E0E0E]   rounded-[5px] px-3 py-1"> {requestInfo.status} </span> </td>
+                                <td className="sm:p-4 p-2 text-center"> {requestInfo.destination}  </td> {/* make the world range 5 word +*/}
+                                <td className="sm:p-4 p-2 text-center"> 
                                     <Link to={ requestInfo.status === "Approved" || requestInfo.status === "Rejected" 
                                     ? `/workerMessageView/${requestInfo._id}` 
                                     : `/workerViewBox/${requestInfo._id}`
                                     }> 
-                                        <button className="px-4 py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                                        <button className="sm:px-4 w-[110px] py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
                                             View More
                                         </button>
                                     </Link>  

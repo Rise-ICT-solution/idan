@@ -45,7 +45,7 @@ function WorkerDashboard (){
             <div>
                 <div className="pt-10 ml-4 mt-12 sm:mt-0 sm:ml-[18%]">
                     <h1 className="text-[25px] font-semibold">Request Status Insights</h1>
-                    <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-5 grid sm:gap-24 mt-12 sm:mt-0">
+                    <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-5 grid sm:gap-24 mt-0 sm:mt-0">
                         <Link to="/workerPendingRequests">
                             <WorkerOverView icon={ImSpinner3} IconColor="text-black" Users="Pending Requests" Count={pendingCount} />
                         </Link>
@@ -58,10 +58,10 @@ function WorkerDashboard (){
                     </div>
                 </div>
 
-                <div className="w-[360px] sm:w-full sm:ml-[18%] px-[10px] top-5 absolute sm:mt-[15%] mt-[100%] max-4-6xl sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden">
+                <div className=" w-[360px] sm:w-full sm:ml-[18%] px-[10px] top-5 absolute sm:mt-[15%] mt-[90%] ">
                     <h1 className="text-[23px] font-semibold">Previous Requests</h1>
                     {requests.length > 0 ? (
-                        <div className="mt-4">
+                        <div className=" w-[360px] sm:w-full  px-[1px] top-5 absolute mt-[8%] sm:mt-[2%] max-4-6xl sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden">
                             <div>
                                 <table className="shadow-md rounded-lg w-full text-left border-collapse">
                                     <thead>
@@ -89,11 +89,11 @@ function WorkerDashboard (){
                                                     }`}>{RequestMessage.status}</span>
                                                 </td>
                                                 <td className="p-4 text-center">{RequestMessage.destination}</td>
-                                                <td className="p-4 text-center">
+                                                <td className="sm:p-4 text-center">
                                                     <Link to={RequestMessage.status === "Approved" || RequestMessage.status === "Rejected" 
                                                     ? `/workerMessageView/${RequestMessage._id}`
                                                     : `/workerViewBox/${RequestMessage._id}`}>
-                                                        <button className="px-4 py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                                                        <button className="sm:px-4 w-[110px] py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
                                                             View More
                                                         </button>
                                                     </Link>

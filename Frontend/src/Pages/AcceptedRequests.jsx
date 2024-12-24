@@ -27,7 +27,7 @@ function AcceptedRequests() {
   }, []);
 
   return (
-    <div className="w-full h-screen bg-[#dadada]">
+    <div className="w-full h-screen flex bg-[#dadada]">
       {/* Fixed Header and Sidebar */}
       <div className="fixed w-full z-10">
         <ManagerHeader />
@@ -37,30 +37,28 @@ function AcceptedRequests() {
       </div>
 
       {/* Scrollable Content Below Header and Sidebar */}
-      <div className="ml-[250px] pt-[80px] w-full h-screen overflow-y-auto">
+      <div className="sm:ml-[250px] px-[10px] sm:px-0 pt-[100px] w-full h-screen  overflow-y-auto">
         {/* Header Section */}
-        <div className="flex items-center justify-between px-[20px] w-[900px]">
-          <h1 className="text-center text-[30px] ml-72 font-semibold">
-            Approved Requests
-          </h1>
+        <div className="flex items-center justify-between px-[20px] w-full">
+          <h1 className="text-center text-2xl ml-16 sm:text-[30px] sm:ml-72 font-semibold"> Approved Requests </h1>
           <Link to="/managerDashboard">
-            <FaDeleteLeft className="text-[35px] text-[#3b3832] hover:text-[#008081]" />
+            <FaDeleteLeft className="sm:text-[35px] sm:ml-[-150px] text-2xl text-[#3b3832] hover:text-[#008081]" />
           </Link>
         </div>
 
         {/* Scrollable Table Section */}
-        <div className="w-full  mt-3 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
+        <div className="w-full  mt-5 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
           {/* Set the height and apply scrolling */}
           <div className="max-h-[600px] overflow-y-auto">
             <table className="table-auto shadow-md w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#008081] text-white font-semibold">
-                  <td className="p-4 text-center rounded-tl-lg">No.</td>
-                  <td className="p-4 text-center">Worker ID</td>
-                  <td className="p-4 text-center">Name</td>
-                  <td className="p-4 text-center">Status</td>
-                  <td className="p-4 text-center">Destination</td>
-                  <td className="p-4 text-center rounded-tr-lg">Action</td>
+                  <td className="sm:p-4 p-3 text-center rounded-tl-lg">No.</td>
+                  <td className="sm:p-4 p-3 text-center">ID</td>
+                  <td className="sm:p-4 p-3 text-center">Name</td>
+                  <td className="sm:p-4 p-3 text-center">Status</td>
+                  <td className="sm:p-4 p-3 text-center">Destination</td>
+                  <td className="sm:p-4 p-3 text-center rounded-tr-lg">Action</td>
                 </tr>
               </thead>
               <tbody className="bg-white">
@@ -71,10 +69,10 @@ function AcceptedRequests() {
                       index % 2 === 0 ? "bg-gray-50" : "bg-white"
                     } border-b border-gray-300 hover:bg-gray-100`}
                   >
-                    <td className="p-4 text-center">{index + 1}</td>
-                    <td className="p-4 text-center">{pendingRequest.ID}</td>
-                    <td className="p-4 text-center">{pendingRequest.fullName}</td>
-                    <td className="p-4 text-center">
+                    <td className="sm:p-4 p-3 text-center">{index + 1}</td>
+                    <td className="sm:p-4 p-3 text-center">{pendingRequest.ID}</td>
+                    <td className="sm:p-4 p-3 text-center">{pendingRequest.fullName}</td>
+                    <td className="sm:p-4 p-3 text-center">
                       <span
                         className={`font-semibold ${
                           pendingRequest.status === "Pending"
@@ -89,10 +87,10 @@ function AcceptedRequests() {
                         {pendingRequest.status}
                       </span>
                     </td>
-                    <td className="p-4 text-center">{pendingRequest.destination}</td>
-                    <td className="p-4 text-center">
+                    <td className="sm:p-4 p-3 text-center">{pendingRequest.destination}</td>
+                    <td className="sm:p-4 p-3 text-center">
                       <Link to={`/managerMessageView/${pendingRequest._id}`}>
-                        <button className="px-4 py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                        <button className="sm:px-4 w-[110px] py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
                           View More
                         </button>
                       </Link>

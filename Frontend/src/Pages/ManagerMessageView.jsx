@@ -55,11 +55,11 @@ function ManagerMessageView (){
     },[])
 
 
-    return  <div className="bg-[#DADADA] w-full h-screen">
+    return  <div className="bg-[#DADADA] absolute w-full h-screen">
         <ManagerSidebar />
     <div className=" ">
         
-        <div className="w-[450px] absolute px-[50px] bg-[#F2F2F2] rounded-lg pt-[20px]  mt-3 ml-[35%] h-[550px]  shadow-[#6A6458]">
+        <div className="sm:w-[450px] w-[365px] ml-3  px-[30px] sm:px-[50px] bg-[#F2F2F2] rounded-lg pt-[20px] mt-24 sm:mt-3 sm:ml-[35%] h-[550px]  shadow-[#6A6458]">
             <h1 className="text-center text-[#3b3832] font-semibold text-[20px]"> More Details </h1>
             <div className="mt-4 gap-5">
                 <div className="flex gap-2 items-center ">
@@ -97,7 +97,7 @@ function ManagerMessageView (){
                 </div>
                 <div className=" ">
                     <h1 className="mt-1 mb-2 font-semibold"> Permission Reason : </h1>
-                    <textarea value={getMessage.reason} className="w-[360px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea>
+                    <textarea value={getMessage.reason} className="sm:w-[360px] w-[300px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea>
                     {/* <h1 className="mt-1 font-semibold"> Manager Comment : </h1>
                     <textarea value={comment} onChange={(event) => setComment(event.target.value)} className="w-[360px]  border-black ml-[-5px] h-[75px] outline-none  px-[6px] " placeholder="Enter your reason"></textarea> */}
                     <div className="flex mt-10 gap-28">

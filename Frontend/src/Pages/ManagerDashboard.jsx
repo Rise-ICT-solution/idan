@@ -50,44 +50,50 @@ function ManagerDashboard (){
             <ManagerHeader />
             <ManagerSidebar />
         </div>
-        <div className="pt-8  bg-[#F1F1F1]  mt-24 w-[950px] h-[screen rounded-xl pb-10 px-[20px]   sm:ml-[18%]">
+        <div className="pt-8  bg-[#F1F1F1]  mt-24 w-[950px] h-[screen rounded-xl pb-10 px-[10px]   sm:ml-[18%]">
             <h1 className="text-[20px]  font-semibold "> Dashboard Overview </h1>
-            <div className="pt-4 sm:flex grid-cols-[160px_160px]  ml-12 grid sm:gap-16 mt-12 sm:mt-0 ">
+            <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-y-4 gap-x-5  sm:ml-12 grid sm:gap-16 sm:mt-0 ">
                 <Link to="/pendingRequests"><OverView icon={ImSpinner3}  Users="Pending Requests" Count={pendingCount} /></Link>
                 <Link to="/acceptedRequests"><OverView icon={FaCheckDouble}  Users="Accepted Requests" Count={approvedCount} /></Link>
                 <Link to="/rejectedRequests"><OverView icon={FaUserSlash}  Users="Rejected Requests" Count={rejectedCount} /></Link>
             </div>
-            <div className=" ml-7 mt-8 overflow-y-auto absolute ">
+            <div className=" w-[360px] sm:w-full sm:ml-[3%]  top-5 absolute sm:mt-[22%] mt-[95%] ">
                 <h1 className="font-semibold text-[20px]"> Waiting Requests</h1>
-                <table className=" shadow-md rounded-lg mt-2 w-[850px] text-left border-collabse">
-                <thead>
-                    <tr className="bg-[#008081] text-white font-semibold">
-                        <td className="p-4 text-center rounded-tl-lg"> No.</td>
-                        <td className="p-4 text-center"> Worker ID </td>
-                        <td className="p-4 text-center"> Name </td>
-                        <td className="p-4 text-center"> Status </td>
-                        <td className="p-4 text-center"> Destination </td>
-                        <td className="p-4 text-center rounded-tr-lg"> Action </td>
-                    </tr>
-                </thead>
-                <tbody className="bg-white">
-                    {
-                        PendingRequests.map((pending, index) => {
-                            return <tr key={index}  className={`${ index %2 === 0 ? "bg-gray-50" : "bg-white"} border-b border-gray-300 hover:bg-gray-100`}>                        
-                            <td className="p-4  text-center">{index + 1} </td>
-                            <td className="p-4 text-center"> {pending.ID} </td>
-                            <td className="p-4 text-center"> {pending.fullName} </td>
-                            <td className="p-4 text-center"> <span className="text-[#0e0e0e]   ">{pending.status}</span> </td>
-                            <td className="p-4 text-center"> {pending.destination}  </td> {/* make the world range 5 word +*/}
-                            <td className="p-4 text-center"> <span className="text-[#0e0e0e] underline  font-semibold hover:text-[#008080] "><Link to={`/managerMessageView/${pending._id}`}>View more</Link></span> </td>
-                        </tr>
+                {PendingRequests.length > 0 ? (
+                    <div className="w-[360px] sm:w-full  px-[1px] top-5 absolute mt-[3%] sm:mtsm:-[1 p-3%] max-4-6xl sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden">
+                        <table className=" shadow-md rounded-lg mt-2 w-[850px] text-left border-collabse">
+                            <thead>
+                                <tr className="bg-[#008081] text-white font-semibold">
+                                    <td className="sm:p-4 p-3 text-center rounded-tl-lg"> No.</td>
+                                    <td className="sm:p-4 p-3 text-center"> Worker ID </td>
+                                    <td className="sm:p-4 p-3 text-center"> Name </td>
+                                    <td className="sm:p-4 p-3 text-center"> Status </td>
+                                    <td className="sm:p-4 p-3 text-center"> Destination </td>
+                                    <td className="sm:p-4 p-3 text-center rounded-tr-lg"> Action </td>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white">
+                                {
+                                    PendingRequests.map((pending, index) => {
+                                        return <tr key={index}  className={`${ index %2 === 0 ? "bg-gray-50" : "bg-white"} border-b border-gray-300 hover:bg-gray-100`}>                        
+                                        <td className="sm:p-4 p-3  text-center">{index + 1} </td>
+                                        <td className="sm:p-4 p-3 text-center"> {pending.ID} </td>
+                                        <td className="sm:p-4 p-3 text-center"> {pending.fullName} </td>
+                                        <td className="sm:p-4 p-3 text-center"> <span className="text-[#0e0e0e]   ">{pending.status}</span> </td>
+                                        <td className="sm:p-4 p-3 text-center"> {pending.destination}  </td> {/* make the world range 5 word +*/}
+                                        <td className="sm:p-4 p-3 text-center"> <span className="text-[#0e0e0e] underline  font-semibold hover:text-[#008080] "><Link to={`/managerMessageView/${pending._id}`}>View more</Link></span> </td>
+                                    </tr>
 
-                        })
-                    }
-                </tbody>
-                
-                
-                       </table>
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                </div>
+            ) : (
+                <div>
+                    <h1 className="text-[20px] font-semibold pt-60 text-center text-red-500">NO Requests were found</h1>
+                </div>
+            )}
             
             </div>
         </div>

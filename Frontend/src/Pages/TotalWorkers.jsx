@@ -32,51 +32,60 @@ function TotalWorkers() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-[100px]  overflow-y-auto w-full ml-[20%]">
-        <h1 className="text-3xl font-semibold text-deepBlue ml-[30%] mb-4">
-          All Workers
-        </h1>
+      <div className="pt-[100px] ml-2 sm:ml-[20%] w-full">
+        <h1 className="text-3xl font-semibold text-deepBlue ml-[30%] mb-4"> All Workers </h1>
+          <div className="pt-[10px] px-[10px]  overflow-y-auto ">
 
-        {/* Scrollable Table Container */}
-        <div className="w-[950px]    bg-white rounded-lg shadow-md h-[500px]">
-          <table className=" w-full overflow-y-auto  text-left border-collapse">
-            <thead>
-              <tr className="bg-[#008080] text-white font-semibold">
-                <td className="p-3 border-[#008080] border text-center">No.</td>
-                <td className="p-3 border-[#008080] border text-center">Admin ID</td>
-                <td className="p-3 border-[#008080] border text-center">Name</td>
-                <td className="p-3 border-[#008080] border text-center">Email</td>
-                <td className="p-3 border-[#008080] border text-center">Action</td>
-              </tr>
-            </thead>
-            <tbody className="bg-[#d2d2d2]">
-              {Workers.map((workerData, index) => (
-                <tr key={index} className="border-b border border-gray-300">
-                  <td className="p-3 border text-center border-gray-500">
-                    {index + 1}
-                  </td>
-                  <td className="p-3 border text-center border-gray-500">
-                    {workerData.id}
-                  </td>
-                  <td className="p-3 border text-center border-gray-500">
-                    {workerData.name}
-                  </td>
-                  <td className="p-3 border text-center border-gray-500">
-                    {workerData.email}
-                  </td>
-                  <td className="p-3 border text-center border-gray-500">
-                    <Link to={`/workerDetail/${workerData._id}`}>
-                      <button className="px-2 py-1 rounded-md bg-[#008080] hover:bg-[#0e0e0e] text-white">
-                        View More
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            {/* Scrollable Table Container */}
+            {
+              Workers.length > 0 ? (
+                
+                <div className="sm:w-[950px] w-[700px]   bg-white rounded-lg shadow-md ">
+              <table className=" w-full overflow-y-auto  text-left border-collapse">
+                <thead>
+                  <tr className="bg-[#008080] rounded-tl-lg text-white font-semibold">
+                    <td className="p-3 border-[#008080] border text-center">No.</td>
+                    <td className="p-3 border-[#008080] border text-center">Admin ID</td>
+                    <td className="p-3 border-[#008080] border text-center">Name</td>
+                    <td className="p-3 border-[#008080] border text-center">Email</td>
+                    <td className="p-3 border-[#008080] border text-center">Action</td>
+                  </tr>
+                </thead>
+                <tbody className="bg-[#d2d2d2]">
+                  {Workers.map((workerData, index) => (
+                    <tr key={index} className="border-b border border-gray-300">
+                      <td className="p-3 border text-center border-gray-500">
+                        {index + 1}
+                      </td>
+                      <td className="p-3 border text-center border-gray-500">
+                        {workerData.id}
+                      </td>
+                      <td className="p-3 border text-center border-gray-500">
+                        {workerData.name}
+                      </td>
+                      <td className="p-3 border text-center border-gray-500">
+                        {workerData.email}
+                      </td>
+                      <td className="p-3 border text-center border-gray-500">
+                        <Link to={`/workerDetail/${workerData._id}`}>
+                          <button className="px-2 py-1 rounded-md bg-[#008080] hover:bg-[#0e0e0e] text-white">
+                            View More
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            ) : (
+              <div className="w-full text-center py-[200px]">
+                <h2 className="text-2xl font-semibold text-red-500">No Workers Found</h2>
+              </div>
+            )
+            }
+          </div>
         </div>
-      </div>
     </div>
   );
 }

@@ -145,7 +145,7 @@ useEffect(() => {
   return (
     <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
       <WorkerSideBar />
-      <div className="w-full ml-0 sm:ml-[25%] px-[15px] h-[500px] sm:mt-4 mt-20 sm:px-[20px] py-[10px] sm:h-[550px]  absolute  sm:w-[800px] bg-[#F2F2F2] rounded-xl sm:shadow-md">
+      <div className="w-full ml-0 sm:ml-[25%] px-[15px]  sm:mt-4 mt-20 sm:px-[20px] py-[10px] sm:h-[550px]  absolute  sm:w-[800px] bg-[#F2F2F2] rounded-xl sm:shadow-md">
         <div className="mt-2">
           <div className=" text-center">
             {/* <FaUserTie className="text-3xl sm:text-4xl" /> */}
@@ -170,7 +170,7 @@ useEffect(() => {
               <li>Duration</li>
               {/* <li>Subject:</li> */}
             </ul>
-            <ul className="ml-[-30px] leading-[26px]">
+            <ul className="sm:ml-[-30px] leading-[26px]">
               <li>:</li>
               <li>:</li>
               <li>:</li>
@@ -220,12 +220,12 @@ useEffect(() => {
           {
             Request.status === "Approved" && (
 
-              <div className="absolute  right-8 top-24  ">
-                <div onClick={generatePDF} className="flex gap-2 mr-10  items-center">
-                  <FaFileDownload   className="text-[25px] sm:text-[22px]" />
-                  <h1 className=" sm:text-sm  font-semibold">Download File</h1>
+              <div className="absolute items-center  sm:block sm:ml-0  sm:mt-0 mt-[80px] right-4 sm:right-8 top-24  ">
+                <div onClick={generatePDF} className="flex gap-2 sm:mr-10 sm:mt-0    items-center">
+                  <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
+                  <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <BsQrCode className="text-7xl sm:text-8xl mt-5 ml-3" />
+                <BsQrCode className="text-7xl sm:text-8xl sm:mt-5   sm:ml-3" />
               </div>
           )
         }
