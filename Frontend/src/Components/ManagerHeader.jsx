@@ -9,8 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
+function ManagerHeader ({search}){
 
-function ManagerHeader (){
+    
+
     const navigate = useNavigate();
     const admin = localStorage.getItem('admin'); // admin is key in local storage NOte meelwalbana admin ka dhig 
     const LogOut = () => {
@@ -24,12 +26,19 @@ const HandleOpen = () => {
 const HandleClose = () => {
     setIsUserOpen(false)
 }
+
+
+
+    
+
+
+
     return <div> 
         
     <div className="w-full  fixed pl-[18%] bg-[#DADADA]   h-[70px] px-[130px] items-center flex justify-between  ">
         <div className="flex   ">
-            <input type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
-            <IoIosSearch className="text-[22px] text-black ml-2 absolute mt-[10px]" />
+            <input  onChange={search} type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
+            <IoIosSearch  className="text-[22px] text-black ml-2 absolute mt-[10px]" />
         </div>
 
 

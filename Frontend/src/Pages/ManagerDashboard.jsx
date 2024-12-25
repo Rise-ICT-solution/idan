@@ -11,8 +11,13 @@ import axios from "axios";
 
 
 
-
 function ManagerDashboard (){
+
+    //Search ID
+    const [searchUser, setSearchUser] = useState("")
+
+
+
     const params = useParams()
     const [PendingRequests, setPendingRequests] = useState([])
     const [Requests, setRequests] = useState([])
@@ -40,17 +45,26 @@ function ManagerDashboard (){
             console.log(err);
         });
     }
+
+
+        //search id function oo loo isticmaalay props ahaan ManagerHeader
+        const handleSearch = (event)=>{
+            setSearchUser(event.target.value)
+        } 
+
+    
+    
     
 
     useEffect(() => {
         getAllPendingRequests()
     },[])
-    return <div className="w-full flex bg-[#DADADA] fixed h-screen">
+    return <div className="w-full flex  h-screen">
         <div className=" fixed">
-            <ManagerHeader />
+            <ManagerHeader search={handleSearch} />
             <ManagerSidebar />
         </div>
-        <div className="pt-8  bg-[#F1F1F1]  mt-24 w-[950px] h-[screen rounded-xl pb-10 px-[10px]   sm:ml-[18%]">
+        <div className="pt-8    mt-24 w-[950px] h-screen rounded-xl pb-10 px-[10px]   sm:ml-[18%]">
             <h1 className="text-[20px]  font-semibold "> Dashboard Overview </h1>
             <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-y-4 gap-x-5  sm:ml-12 grid sm:gap-16 sm:mt-0 ">
                 <Link to="/pendingRequests"><OverView icon={ImSpinner3}  Users="Pending Requests" Count={pendingCount} /></Link>
@@ -74,7 +88,10 @@ function ManagerDashboard (){
                             </thead>
                             <tbody className="bg-white">
                                 {
-                                    PendingRequests.map((pending, index) => {
+                                    PendingRequests.filter((user)=>{
+                                        return searchUser.toLowerCase() === "" ? user : 
+                                        user.ID.toLowerCase().includes(searchUser.toLowerCase())
+                                    }).map((pending, index) => {
                                         return <tr key={index}  className={`${ index %2 === 0 ? "bg-gray-50" : "bg-white"} border-b border-gray-300 hover:bg-gray-100`}>                        
                                         <td className="sm:p-4 p-3  text-center">{index + 1} </td>
                                         <td className="sm:p-4 p-3 text-center"> {pending.ID} </td>
