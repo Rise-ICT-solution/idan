@@ -110,5 +110,5 @@ function ManagerDashboard (){
         </div>
     // </div>
 }
-export default ManagerDashboard
+    export default ManagerDashboard
 // text-[#6A6458] underline hover:text-black font-semibold rounded-full px-2 py-1

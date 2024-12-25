@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 
 
+// function ManagerHeader (){
+
 
 function ManagerHeader ({setSearchByID}){
     const navigate = useNavigate();
@@ -24,14 +26,11 @@ const HandleOpen = () => {
 const HandleClose = () => {
     setIsUserOpen(false)
 }
-const HandleSearch = (event) => {
-    setSearchByID(event.target.value);
-}
     return <div> 
         
     <div className="w-full  fixed pl-[18%] bg-[#DADADA]   h-[70px] px-[130px] items-center flex justify-between  ">
         <div className="flex   ">
-            <input onChange={HandleSearch} type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
+            <input type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
             <IoIosSearch className="text-[22px] text-black ml-2 absolute mt-[10px]" />
         </div>
 
