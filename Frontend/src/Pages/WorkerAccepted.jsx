@@ -36,14 +36,16 @@ function WorkerAcceptedRequests (){
     },[])
 
     return <div className="w-full h-screen flex fixed bg-[#DADADA]">
-        <WorkerSideBar />
-        <div className="sm:ml-20">
-            <div className="flex items-center justify-between w-[900px] sm:ml-44 mt-[80px] sm:mt-10">
-                <h1 className=" text-center text-2xl sm:text-3xl sm:ml-64 ml-14  font-semibold "> Worker Accepted Requests </h1>
-                <Link to="/managerDashboard"><FaDeleteLeft className="text-[40px] text-[#3b3832] hover:text-[#008081]  " /></Link>
+        <div className="fixed">
+            <WorkerSideBar />
+        </div>
+        <div className="sm:ml-[250px] px-[10px] sm:pp-3 sm:x-0 pt-[100px] sm:pt-[100px] w-full h-screen overflow-y-auto">
+            <div className="flex items-center justify-between px-[20px] w-full">
+                <h1 className=" text-center text-2xl sm:text-3xl sm:ml-64   font-semibold "> Worker Accepted Requests </h1>
+                <Link to="/managerDashboard"><FaDeleteLeft className=" text-[30px] sm:text-[40px] text-[#3b3832] hover:text-[#008081]  " /></Link>
             </div>
-
-            <div className="w-full ml-2 sm:ml-[15%] top-58 absolute mt-4 sm:mt-10 max-w-4xl overflow-y-auto bg-[#F2F2F2] rounded-lg shadow-md ">
+            {AcceptedRequests.length > 0 ? (
+            <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
 
             <table className=" shadow-md  w-full text-left border-collabse">
                     <thead>
@@ -81,6 +83,11 @@ function WorkerAcceptedRequests (){
                     
                         </table>
     </div>
+      ) : (
+        <div>
+            <h1 className="text-[20px] font-semibold pt-60 ml-20 sm:text-center text-red-500">NO Requests were found</h1>
+        </div>
+    )}
         </div>
     </div>
 }

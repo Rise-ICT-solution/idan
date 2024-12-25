@@ -24,14 +24,17 @@ function WorkerRejectedRequests (){
         },[])
 
     return <div className="w-full flex h-screen fixed bg-[#DADADA]">
-        <WorkerSideBar />
-        <div className="ml-20">
-            <div className="flex items-center justify-between w-[900px] sm:ml-44 mt-[80px] sm:mt-10">
-                <h1 className=" text-center sm:text-3xl ml-[-25px] text-2xl sm:ml-64 font-semibold "> Worker Rejected Requests </h1>
-                <Link to="/workerDashboard"><FaDeleteLeft className="text-[40px] text-[#0e0e0e] hover:text-[#008081]  " /></Link>
+        <div className="fixed">
+            <WorkerSideBar />
+        </div>
+        <div className="sm:ml-[250px] px-[10px] sm:pp-3 sm:x-0 pt-[100px] sm:pt-[100px] w-full h-screen overflow-y-auto">
+            <div className="flex items-center justify-between px-[20px] w-full">
+                <h1 className=" text-center  sm:text-3xl ml-[-10px] text-2xl sm:ml-64 font-semibold "> Worker Rejected Requests </h1>
+                <Link to="/workerDashboard"><FaDeleteLeft className="text-[30px] sm:text-[40px] text-[#0e0e0e] hover:text-[#008081]  " /></Link>
             </div>
-            <div className="sm:w-full ml-[-70px]  sm:ml-[15%] top-58 absolute w-[360px]  mt-4 max-w-4xl  bg-white rounded-lg shadow-md sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden ">
 
+            {RejectedRequests.length > 0 ? (
+            <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
                 <table className="  w-full text-left border-collabse">
                         <thead>
                             <tr className="bg-[#008081]   text-white">
@@ -67,7 +70,12 @@ function WorkerRejectedRequests (){
                         </tbody>
                         
                     </table>
-    </div>
+    </div>  ) : (
+        <div>
+            <h1 className="text-[20px] font-semibold pt-60  sm:text-center text-red-500">NO Requests were found</h1>
+        </div>
+    )}
+
         </div>
     </div>
 }

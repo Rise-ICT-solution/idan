@@ -24,14 +24,16 @@ function WorkerPendingRequests (){
             getAllPendingRequests()
         },[])
 
-    return <div className="w-full flex h-screen fixed bg-[#DADADA]">
-        <WorkerSideBar />
-        <div className="sm:ml-20">
-            <div className="flex items-center justify-between w-[900px] sm:ml-44 mt-[100px] sm:mt-10">
-                <h1 className=" text-center text-2xl sm:text-3xl ml-12 sm:ml-64 font-semibold "> Worker Pending Requests </h1>
-                <Link to="/workerDashboard"><FaDeleteLeft className="text-[40px] text-[#3b3832] hover:text-[#008081]  " /></Link>
+    return <div className="w-full flex h-screen  bg-[#DADADA]">
+        <div className="fixed">
+            <WorkerSideBar />
+        </div>
+        <div className="sm:ml-[250px] px-[10px] sm:pp-3 sm:x-0 pt-[100px] sm:pt-[100px] w-full h-screen overflow-y-auto"> 
+            <div className="flex items-center justify-between px-[20px] w-full">
+                <h1 className=" text-center text-2xl sm:text-3xl sm:ml-12 sm:ml-64 font-semibold"> Worker Pending Requests </h1>
+                <Link to="/workerDashboard"><FaDeleteLeft className="sm:text-[40px] text-[30px] text-[#3b3832] hover:text-[#008081]  " /></Link>
             </div>
-            <div className="sm:w-full ml-2  sm:ml-[15%] top-58 absolute w-[360px]  mt-4 max-w-4xl  bg-white rounded-lg shadow-md sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden">
+            <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
 
                 <table className="  w-full text-left border-collabse">
                         <thead>

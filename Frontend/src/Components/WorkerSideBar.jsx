@@ -34,13 +34,13 @@ const HandleClose = () => {
         <div className=" sm:block flex items-center sm:mt-20 px-[10px]  ">
             <NavLink to="/workerDashboard">
                 <div className="flex gap-2 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
-                    <LuLayoutDashboard className="sm:text-[28px] text-[30px] hover:text-black ml-5  text-white" />
+                    <LuLayoutDashboard className="sm:text-[28px] text-[30px] sm:hover:text-white hover:text-black ml-5  text-white" />
                     <h1 className="text-white hidden sm:flex text-[18px]">Dashboard</h1>
                 </div>
             </NavLink>
             <NavLink to="/workerForm">
                 <div className="flex gap-2 sm:mt-4 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
-                    <LuMessageSquarePlus className="sm:text-[27px] text-[30px] hover:text-black ml-5  text-white" />
+                    <LuMessageSquarePlus className="sm:text-[27px] text-[30px] sm:hover:text-white hover:text-black ml-5  text-white" />
                     <h1 className="text-white hidden sm:flex text-[18px]">Create request</h1>
                 </div>
             </NavLink>
@@ -64,7 +64,7 @@ const HandleClose = () => {
             </div>
         </div>
     </div>
-    <div style={{display: IsUserOpen ? "block" : "none"}} className="w-[200px] z-10 shadow-md  sm:right-4 right-4     fixed sm:top-12 top-20  h-[220px]  bg-white rounded-[10px]">
+    <div style={{display: IsUserOpen ? "block" : "none"}} className="w-[200px] z-10 shadow-md  sm:right-4 right-4     fixed sm:top-12 top-20  h-[240px]  bg-white rounded-[10px]">
         <div className="w-full h-[50px]  rounded-t-[10px] bg-[#008081] shadow-b-md shadow-b-gray-200 pt-5 rounded-b-[20px]">
             <div className="w-[50px] ml-[36%]   py-[10px] px-[5px] h-[50px] shadow rounded-full bg-white">
                 <FaUser className="w-[30px] h-[30px] ml-1 text-[#008081]" />

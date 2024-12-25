@@ -27,7 +27,7 @@ function TotalAdmins (){
             <ManagerHeader />
             <ManagerSidebar />
         </div>
-        <div className="pt-20 sm:pl-[18%] w-full overflow-y-auto px-[10px]">
+        <div className="sm:pt-20 pt-24 sm:pl-[18%] w-full overflow-y-auto px-[10px]">
         <h1 className=" ml-[43%] text-3xl font-semibold text-[#0e0e0e]"> All Admins </h1>
         <div className="w-[950px] sm:ml-10  top-58   mt-10  overflow-y-auto  bg-white rounded-lg shadow-md ">
 

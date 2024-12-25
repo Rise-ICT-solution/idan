@@ -39,13 +39,15 @@ function WorkerDashboard (){
     }, []);
 
     return (
-        <div className="w-full h-screen">
-            <WorkerSideBar />
+        <div className=" flex justify-between h-screen">
+            <div className="  z-20 top-0 absolute">
+                <WorkerSideBar />
+            </div>
 
             <div>
-                <div className="pt-10 ml-4 mt-12 sm:mt-0 sm:ml-[18%]">
+                <div className="pt-10 ml-4 w-full mt-12 overflow-auto sm:mt-0 sm:ml-[30%]">
                     <h1 className="text-[25px] font-semibold">Request Status Insights</h1>
-                    <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-5 grid sm:gap-24 mt-0 sm:mt-0">
+                    <div className="pt-4 sm:flex grid-cols-[160px_160px] w-full gap-5 grid sm:gap-24 mt-0 sm:mt-0">
                         <Link to="/workerPendingRequests">
                             <WorkerOverView icon={ImSpinner3} IconColor="text-black" Users="Pending Requests" Count={pendingCount} />
                         </Link>

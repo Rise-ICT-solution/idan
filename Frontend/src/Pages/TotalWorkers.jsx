@@ -32,7 +32,7 @@ function TotalWorkers() {
       </div>
 
       {/* Main Content */}
-      <div className="pt-[100px] ml-2 sm:ml-[20%] w-full">
+      <div className="pt-[100px] overflow-auto h-screen ml-2 sm:ml-[20%] w-full">
         <h1 className="text-3xl font-semibold text-deepBlue ml-[30%] mb-4"> All Workers </h1>
           <div className="pt-[10px] px-[10px]  overflow-y-auto ">
 

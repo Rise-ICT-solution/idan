@@ -7,6 +7,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 
 function ManagerMessageView (){
     const params = useParams()
+    const navigate = useNavigate()
     const [getMessage, setGetMessage] = useState({})
     const [comment, setComment] = useState("")
    
@@ -32,6 +33,17 @@ function ManagerMessageView (){
         }).then((res) => {
             if(res.data.message){
                 alert("Status has been updated")
+                // if (res.data.status === "Approved"){
+                //     navigate("/acceptedRequests")
+                // } 
+                // else if ( res.data.status === "Rejected") {
+                //     navigate("/rejectedRequests")
+                // } 
+                // else {
+                //     console.log("Stay Your page")
+                // }
+                navigate("/managerDashboard")
+
                 console.log(res.data)
             }
         }).catch((error) => {

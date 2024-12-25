@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6"; // Assuming the same icon
-import {jsPDF} from "jspdf"
 import WorkerSideBar from "../Components/WorkerSideBar";
+import { useParams } from "react-router-dom";
 
 function WorkerViewBox() {
   const params = useParams();
@@ -33,15 +32,13 @@ function WorkerViewBox() {
       });
   };
 
-  const HandleDeleteRequest = () => {
-    axios
-      .delete(`http://localhost:7000/request/delete/${params.bid}`)
-      .then((response) => {
+  const HandleDeleteRequest = (id) => {
+    console.log(ViewMore.id)
+    axios.delete(`http://localhost:7000/requests/delete/${params.id}`).then((response) => {
         console.log(response);
         alert("Request has been deleted successfully");
         navigate("/workerDashboard");
-      })
-      .catch((err) => {
+      }).catch((err) => {
         alert("Error in deleting request");
         console.log(err);
       });
@@ -54,19 +51,6 @@ function WorkerViewBox() {
     setViewMore((prevState) => ({ ...prevState, duration })); // Update the duration in state
   };
 
-
-  // Function sameenaayo pdf
-  const generatePDF = () => {
-
-    const doc = new jsPDF()
-
-    doc.text(`Name: ${name} <br>`, 10, 10)
-    doc.text(`Title: ${title} <br>`, 10, 20)
-    doc.text(`ID: ${id}`, 10, 40)
-    doc.text(`Permission Status: ${status}`, 10, 30)
-    doc.save("an.pdf")
-
-  }
 
 
   useEffect(() => {
@@ -124,7 +108,7 @@ function WorkerViewBox() {
                   {ViewMore.status}
                 </button>
                 <button
-                  onClick={HandleDeleteRequest} className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white" > Delete 
+                  onClick={() => HandleDeleteRequest(ViewMore.id)} className="mt-1 w-[125px] h-[40px] rounded-[8px] bg-[#017779] hover:bg-[#0E0E0E] text-white" > Delete 
                 </button>
               </div>
             </div>

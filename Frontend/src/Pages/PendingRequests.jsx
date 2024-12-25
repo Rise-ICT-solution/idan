@@ -7,9 +7,12 @@ import axios from "axios";
 
 function PendingRequests() {
   const [PendingRequests, setPendingRequests] = useState([]);
-  // const [requests, setRequests] = useState([])
   const [PendingCount, setPendingCount] = useState(0);
+  const [SearchByID, setSearchByID] = useState(""); // State for search input
 
+  const filteredRequests = PendingRequests.filter((request) =>
+    request.ID.toLowerCase().includes(SearchByID.toLowerCase())
+  );
   const getAllPendingRequests = () => {
     axios
       .get("http://localhost:7000/requests/read")
@@ -32,7 +35,7 @@ function PendingRequests() {
     <div className="w-full h-screen flex bg-[#dadada]">
       {/* Fixed Header and Sidebar */}
       <div className="fixed w-full z-10">
-        <ManagerHeader />
+        <ManagerHeader setSearchByID={setSearchByID} />
       </div>
       <div className="fixed top-[60px] z-10">
         <ManagerSidebar />
