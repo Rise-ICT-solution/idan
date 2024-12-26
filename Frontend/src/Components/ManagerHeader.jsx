@@ -30,7 +30,7 @@ const HandleClose = () => {
         
     <div className="w-full  fixed pl-[18%] bg-[#DADADA]   h-[70px] px-[130px] items-center flex justify-between  ">
         <div className="flex   ">
-            <input type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
+            <input onChange={(e) => setSearchByID(e.target.value)} type="text" placeholder="Search by ID" className="w-[300px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-full px-2" />
             <IoIosSearch className="text-[22px] text-black ml-2 absolute mt-[10px]" />
         </div>
 

@@ -2,7 +2,7 @@
 
 function WorkerOverView ({icon: Icon,Users, Count}){
     return <div className="">
-            <div className={`sm:w-[230px] flex gap-3 items-center  w-[180px] sm:h-[100px] px-[5px] py-5 sm:py-3 shadow-md h-[90px] bg-white border-l-4 border-l-[#008081]  rounded-r-[5px]`}>
+            <div className={`sm:w-[230px] flex gap-3 items-center  w-[180px] sm:h-[100px] px-[5px] py-5 sm:py-3 shadow-md h-[90px] bg-[#F1F1F1] hover:bg-white  border-l-4 border-l-[#008081]  rounded-r-[5px]`}>
                 <div className="  text-[27px] px-[10px] text-center py-[11px] sm:w-[50px] sm:h-[50px]     bg-[#cceaea]  rounded-[10px]">
                     <Icon className={` text[20px] text-[#008181] `} />
                 </div>

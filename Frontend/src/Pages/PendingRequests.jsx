@@ -10,9 +10,9 @@ function PendingRequests() {
   const [PendingCount, setPendingCount] = useState(0);
   const [SearchByID, setSearchByID] = useState(""); // State for search input
 
-  const filteredRequests = PendingRequests.filter((request) =>
-    request.ID.toLowerCase().includes(SearchByID.toLowerCase())
-  );
+  // const filteredRequests = PendingRequests.filter((request) =>
+  //   request.ID.toLowerCase().includes(SearchByID.toLowerCase())
+  // );
   const getAllPendingRequests = () => {
     axios
       .get("http://localhost:7000/requests/read")
@@ -27,6 +27,10 @@ function PendingRequests() {
       });
   };
 
+  const SearchWorkersRequestByID = PendingRequests.filter((request) => 
+    request.ID.toLowerCase().includes(SearchByID.toLowerCase(
+    
+  )))
   useEffect(() => {
     getAllPendingRequests();
   }, []);
@@ -53,8 +57,12 @@ function PendingRequests() {
         </div>
 
         {/* Scrollable Table Section */}
+        {/* Search words requests by */}
+          { SearchWorkersRequestByID.length > 0 ? (
         <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
           {/* Set the height and apply scrolling */}
+
+          
           <div className="max-h-[600px] overflow-y-auto">
             <table className="table-auto shadow-md w-full text-left border-collapse">
               <thead>
@@ -68,7 +76,7 @@ function PendingRequests() {
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {PendingRequests.map((pendingRequest, index) => (
+                {SearchWorkersRequestByID.map((pendingRequest, index) => (
                   <tr
                     key={index}
                     className={`${
@@ -107,6 +115,9 @@ function PendingRequests() {
             </table>
           </div>
         </div>
+          ): (
+            <p className=" ml-10 sm:ml-[30%] mt-28 text-red-600 font-semibold text-2xl"> No requests found</p>
+          )}
       </div>
     </div>
   );

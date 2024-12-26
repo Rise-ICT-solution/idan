@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 
 function TotalWorkers() {
   const [Workers, setWorkers] = useState([]);
+  const [SearchByID, setSearchByID] = useState("");
+
 
   const HandleGetWorkers = () => {
     axios
@@ -18,7 +20,9 @@ function TotalWorkers() {
         console.log(error);
       });
   };
-
+  const SearchWorkersByID = Workers.filter((worker) =>
+    worker.id.toLowerCase().includes(SearchByID.toLowerCase())
+  );
   useEffect(() => {
     HandleGetWorkers();
   }, []);
@@ -27,7 +31,7 @@ function TotalWorkers() {
     <div className="w-full h-screen fixed bg-[#dadada]">
       {/* Fixed Header and Sidebar */}
       <div className="fixed ">
-        <ManagerHeader />
+        <ManagerHeader setSearchByID={setSearchByID} />
         <ManagerSidebar />
       </div>
 
@@ -38,7 +42,7 @@ function TotalWorkers() {
 
             {/* Scrollable Table Container */}
             {
-              Workers.length > 0 ? (
+              SearchWorkersByID.length > 0 ? (
                 
                 <div className="sm:w-[950px] w-[700px]   bg-white rounded-lg shadow-md ">
               <table className=" w-full overflow-y-auto  text-left border-collapse">
@@ -52,7 +56,7 @@ function TotalWorkers() {
                   </tr>
                 </thead>
                 <tbody className="bg-[#d2d2d2]">
-                  {Workers.map((workerData, index) => (
+                  {SearchWorkersByID.map((workerData, index) => (
                     <tr key={index} className="border-b border border-gray-300">
                       <td className="p-3 border text-center border-gray-500">
                         {index + 1}

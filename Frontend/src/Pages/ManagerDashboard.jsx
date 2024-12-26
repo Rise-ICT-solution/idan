@@ -101,7 +101,7 @@ function ManagerDashboard (){
                 </div>
             ) : (
                 <div>
-                    <h1 className="text-[20px] font-semibold pt-60 text-center text-red-500">NO Requests were found</h1>
+                    <h1 className="text-[20px]  font-semibold pt-60 sm:ml-[25%] mt-[-10%] text-red-500">NO Requests were found</h1>
                 </div>
             )}
             
