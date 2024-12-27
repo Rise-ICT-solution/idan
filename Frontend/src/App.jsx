@@ -26,12 +26,14 @@ import WorkerNotificationPage from "./Pages/WorkerNotification"
 import WorkerPendingRequests from "./Pages/WorkerPending"
 import WorkerRejectedRequests from "./Pages/WorkerRejected"
 import WorkerAcceptedRequests from "./Pages/WorkerAccepted"
+import ApprovedScan from "./Pages/ApprovedScan"
 function App (){
   return <Routes>
     <Route path="/" element={<LoginPage/>} />
     <Route path="/workerDashboard" element={<WorkerDashboard/>} />
     <Route path="/workerForm" element={<WorkerForm/>} />
     <Route path="/workerMessageView/:id" element={<WorkerMessageView/>} />
+    <Route path="/idan/ApprovedWorker/:id" element={<ApprovedScan/>} />
     <Route path="/managerNotification" element={<ManagerNotificationPage/>} />
     <Route path="/workerNotification" element={<WorkerNotificationPage/>} />
     <Route path="/workerViewMore/:id" element={<WorkerViewMore/>} />
