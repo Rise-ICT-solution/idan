@@ -66,75 +66,87 @@ const generatePDF = () => {
   const whiteColor = "#ffffff";
 
   // Draw header
-  doc.setFillColor(headerFooterColor);
-  doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Header rectangle
+  // Initialize the document with header and footer styles
+doc.setFillColor(headerFooterColor);
+doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Header rectangle
 
-  // Title in the header
-  doc.setFontSize(18);
-  doc.setTextColor(255, 255, 255); // White text color
-  doc.text("Worker Request Report", 72, 12); // Title of the PDF
+// Title in the header
+doc.setFontSize(18);
+doc.setTextColor(255, 255, 255); // White text color
+doc.text("Worker Request Report", 72, 12); // Title of the PDF
 
-  // Draw footer
-  doc.setFillColor(headerFooterColor);
-  doc.rect(0, doc.internal.pageSize.height - 20, doc.internal.pageSize.width, 20, 'F'); // Footer rectangle
+// Draw footer
+doc.setFillColor(headerFooterColor);
+doc.rect(0, doc.internal.pageSize.height - 20, doc.internal.pageSize.width, 20, 'F'); // Footer rectangle
 
-  // Footer text (page number)
-  doc.setFontSize(12);
-  doc.setTextColor(whiteColor);
+// Footer text (page number)
+doc.setFontSize(12);
+doc.setTextColor(whiteColor);
+doc.text(`Page ${doc.internal.getNumberOfPages()}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 8);
 
-  // Set the content font style
-  doc.setFontSize(12);
-  doc.setTextColor(0, 0, 0); // Black text for content
+// Set the content font style and text alignment
+doc.setFontSize(14);
+doc.setTextColor(0, 0, 0); // Black text for content
 
-  // Add information in a professional format
+// Add information in a professional format with appropriate spacing
 
-  // Status: Approved
-  doc.text(`Status: ${Status}`, 90, 28);
-  doc.setTextColor(0, 128, 128); // Change color for status to match the header
+// Status: Approved (with conditional color)
+doc.setFontSize(16);
+doc.setTextColor(Status === "Approved" ? 0 : 255, Status === "Approved" ? 128 : 0, 0); // Green for approved, red for others
+doc.text(`Status: ${Status}`, 90, 28);
 
-  // From
-  doc.setTextColor(0, 0, 0); // Back to black text for labels
-  doc.text(`From: ${JSON.parse(admin).name}`, 10, 50);
+// Reset to black text for regular content
+doc.setTextColor(0, 0, 0);
+doc.setFontSize(13);
 
-  // To
-  doc.text(`To: ${Name}`, 10, 60);
+// From (admin name)
+doc.text(`From: ${JSON.parse(admin).name}`, 10, 50);
 
-  // Title
-  doc.text(`Title: ${Title}`, 10, 70);
+// To (worker name)
+doc.text(`To: ${Name}`, 10, 60);
 
-  // Requested Date
-  doc.text(`Requested Date: ${new Date(RequestedDate).toLocaleDateString()}`, 10, 80);
+// Title
+doc.text(`Title: ${Title}`, 10, 70);
 
-  // Approved Date
-  doc.text(`Approved Date: ${new Date(ApprovedDate).toLocaleDateString()}`, 10, 90);
+// Requested Date
+doc.text(`Requested Date: ${new Date(RequestedDate).toLocaleDateString()}`, 10, 80);
 
-  // Destination
-  doc.text(`Destination: ${Destination}`, 10, 100);
+// Approved Date
+doc.text(`Approved Date: ${new Date(ApprovedDate).toLocaleDateString()}`, 10, 90);
 
-  // Start Date
-  doc.text(`Start Date: ${new Date(startDate).toLocaleDateString()}`, 10, 110);
+// Destination
+doc.text(`Destination: ${Destination}`, 10, 100);
 
-  // End Date
-  doc.text(`End Date: ${new Date(endDate).toLocaleDateString()}`, 10, 120);
+// Start Date
+doc.text(`Start Date: ${new Date(startDate).toLocaleDateString()}`, 10, 110);
 
-  // Duration
-  doc.text(`Duration: ${Duration} days`, 10, 130);
+// End Date
+doc.text(`End Date: ${new Date(endDate).toLocaleDateString()}`, 10, 120);
 
-  // Letter Body
-  doc.setFontSize(12); // Smaller font for the body text
-  doc.text(`Dear ${Name},`, 10, 140);
-  const lines = [
-    `I am pleased to inform you that your request for permission to conduct the permission request`,
-    `has been ${Status}. This approval is granted under the terms and conditions set forth`,
-    `in your application submitted on ${new Date(RequestedDate).toLocaleDateString()}.`,
-    `Best wishes for your endeavor.`,
-  ];
-  doc.text(lines, 10, 150);
+// Duration
+doc.text(`Duration: ${Duration} days`, 10, 130);
 
-  // Closing
-  doc.text("Sincerely,", 10, 180);
-  doc.text(`${JSON.parse(admin).name}`, 10, 190);
-  doc.text(`${JSON.parse(admin).title}`, 10, 200);
+// Add line spacing for readability
+doc.setLineHeightFactor(1.5);
+
+// Letter Body
+doc.setFontSize(13); // Set the font size for the body text
+doc.text(`Dear ${Name},`, 10, 150);
+const bodyLines = [
+  `I am pleased to inform you that your request for permission to conduct the request`,
+  `has been ${Status}. This approval is granted under the terms and conditions set forth`,
+  `in your application submitted on ${new Date(RequestedDate).toLocaleDateString()}.`,
+  `Best wishes for your endeavor.`,
+];
+doc.text(bodyLines, 10, 160);
+
+// Closing statement
+doc.text("Sincerely,", 10, 200);
+doc.text(`${JSON.parse(admin).name}`, 10, 210);
+doc.text(`${JSON.parse(admin).title}`, 10, 220);
+
+// Optional: Add further formatting adjustments as needed
+
 
   // Add the QR code to the PDF
   doc.addImage(qrCodeDataURL, 'PNG', 160, 50, 40, 40); // Adjust positioning and size as necessary
