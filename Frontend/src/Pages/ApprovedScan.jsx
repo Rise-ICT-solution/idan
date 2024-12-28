@@ -4,14 +4,14 @@ import { FaUserTie } from "react-icons/fa6";
 import { BsQrCode } from "react-icons/bs";
 import { FaFileDownload } from "react-icons/fa";
 import WorkerSideBar from "../Components/WorkerSideBar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import {jsPDF} from 'jspdf'
-import QRCode from "react-qr-code"
-
+import {jsPDF} from 'jspdf';
+import QRious from 'qrious'; 
 function ApprovedScan() {
   const params = useParams()
+  const qrRef = useRef(null); // Reference for the QR code
   const [Request, setRequest] = useState({})
   const [Name, setName] = useState("")
   const [Title, setTitle] = useState("")
@@ -52,101 +52,111 @@ const calculateDuration = (startDate, endDate) => {
 };
 const generatePDF = () => {
   const doc = new jsPDF();
-  //  const qr = new QRious({
-  //   value: 'https://example.com', // You can replace this with any link or data
-  //   size: 100, // Size of the QR code
-  // });
+
+  // Generate the QR code
+  const qr = new QRious({
+    value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
+    size: 100, // Size of the QR code
+  });
+
+  // Convert QR code to base64 format
+  const qrCodeDataURL = qr.toDataURL();
+
   const headerFooterColor = "#008081";
   const whiteColor = "#ffffff";
-   // Draw header
-   doc.setFillColor(headerFooterColor);
-   doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Header rectangle
 
-   // Title in the header
-   doc.setFontSize(18);
-   doc.setTextColor(255, 255, 255); // White text color
-   doc.text("Worker Request Report", 72, 15,); // Title of the PDF
+  // Draw header
+  doc.setFillColor(headerFooterColor);
+  doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Header rectangle
 
-   // Draw footer
-   doc.setFillColor(headerFooterColor);
-   doc.rect(0, doc.internal.pageSize.height - 20, doc.internal.pageSize.width, 20, 'F'); // Footer rectangle
+  // Title in the header
+  doc.setFontSize(18);
+  doc.setTextColor(255, 255, 255); // White text color
+  doc.text("Worker Request Report", 72, 12); // Title of the PDF
 
-   // Footer text (page number)
-   doc.setFontSize(12);
-   doc.setTextColor(whiteColor);
-  //  doc.text("Page 1", doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
+  // Draw footer
+  doc.setFillColor(headerFooterColor);
+  doc.rect(0, doc.internal.pageSize.height - 20, doc.internal.pageSize.width, 20, 'F'); // Footer rectangle
 
-   // Set the content font style
-   doc.setFontSize(12);
-   doc.setTextColor(0, 0, 0); // Black text for content
+  // Footer text (page number)
+  doc.setFontSize(12);
+  doc.setTextColor(whiteColor);
 
-   // Add information in a professional format
+  // Set the content font style
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0); // Black text for content
 
-   // Status: Approved
-   doc.text(`Status: ${Status}`, 90, 30);
-   doc.setTextColor(0, 128, 128); // Change color for status to match the header
+  // Add information in a professional format
 
-   // From
-   doc.setTextColor(0, 0, 0); // Back to black text for labels
-   doc.text(`From: ${JSON.parse(admin).name}`, 10, 50);
+  // Status: Approved
+  doc.text(`Status: ${Status}`, 90, 28);
+  doc.setTextColor(0, 128, 128); // Change color for status to match the header
 
-   // To
-   doc.text(`To: ${Name}`, 10, 60);
+  // From
+  doc.setTextColor(0, 0, 0); // Back to black text for labels
+  doc.text(`From: ${JSON.parse(admin).name}`, 10, 50);
 
-   // Title
-   doc.text(`Title: ${Title}`, 10, 70);
+  // To
+  doc.text(`To: ${Name}`, 10, 60);
 
-   // Requested Date
-   doc.text(`Requested Date: ${new Date (RequestedDate).toLocaleDateString()}`, 10, 80);
+  // Title
+  doc.text(`Title: ${Title}`, 10, 70);
 
-   // Approved Date
-   doc.text(`Approved Date: ${new Date (ApprovedDate).toLocaleDateString()}`, 10, 90);
+  // Requested Date
+  doc.text(`Requested Date: ${new Date(RequestedDate).toLocaleDateString()}`, 10, 80);
 
-   // Destination
-   doc.text(`Destination: ${Destination}`, 10, 100);
+  // Approved Date
+  doc.text(`Approved Date: ${new Date(ApprovedDate).toLocaleDateString()}`, 10, 90);
 
-   // Start Date
-   doc.text(`Start Date: ${new Date (startDate).toLocaleDateString()}`, 10, 110);
+  // Destination
+  doc.text(`Destination: ${Destination}`, 10, 100);
 
-   // End Date
-   doc.text(`End Date: ${new Date (endDate).toLocaleDateString()}`, 10, 120);
+  // Start Date
+  doc.text(`Start Date: ${new Date(startDate).toLocaleDateString()}`, 10, 110);
 
-   // Duration
-   doc.text(`Duration: ${Duration} days`, 10, 130);
+  // End Date
+  doc.text(`End Date: ${new Date(endDate).toLocaleDateString()}`, 10, 120);
 
-   // Letter Body
-   doc.setFontSize(12); // Smaller font for the body text
-   doc.text(`Dear ${Name}, `, 10, 140);
-   const lines = [
-     `I am pleased to inform you that your request for permission to conduct the permission request",
-    "has been ${Status}. This approval is granted under the terms and conditions set forth",
-    "in your application submitted on ${RequestedDate}",
-    "Best wishes for your endeavor. `
-];
+  // Duration
+  doc.text(`Duration: ${Duration} days`, 10, 130);
 
-doc.text(lines, 10, 150);
-  //  doc.text(`I am pleased to inform you that your request for permission to conduct the permission request`,
-  //   `has been ${Status}. This approval is granted under the terms and conditions set forth in your application`,
-  // `submitted on ${new Date (RequestedDate).toLocaleDateString()} Best wishes for your endeavor`, 10, 150);
+  // Letter Body
+  doc.setFontSize(12); // Smaller font for the body text
+  doc.text(`Dear ${Name},`, 10, 140);
+  const lines = [
+    `I am pleased to inform you that your request for permission to conduct the permission request`,
+    `has been ${Status}. This approval is granted under the terms and conditions set forth`,
+    `in your application submitted on ${new Date(RequestedDate).toLocaleDateString()}.`,
+    `Best wishes for your endeavor.`,
+  ];
+  doc.text(lines, 10, 150);
 
-   // Closing
-   doc.text("Sincerely,", 10, 180);
-   doc.text(`${JSON.parse(admin).name}`, 10, 190);
-   doc.text(`${JSON.parse(admin).title}`, 10, 200);
+  // Closing
+  doc.text("Sincerely,", 10, 180);
+  doc.text(`${JSON.parse(admin).name}`, 10, 190);
+  doc.text(`${JSON.parse(admin).title}`, 10, 200);
 
-   
-   // Save the PDF
-   doc.save("worker_request_report.pdf");
+  // Add the QR code to the PDF
+  doc.addImage(qrCodeDataURL, 'PNG', 160, 50, 40, 40); // Adjust positioning and size as necessary
 
+  // Save the PDF
+  doc.save("worker_request_report.pdf");
 };
+
+
 
 useEffect(() => {
     HandleGetRequests();
+    const qr = new QRious({
+      element: qrRef.current,
+      value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
+      size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
+    });
 },[])
   return (
     <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
       {/* <WorkerSideBar /> */}
-      <div className="w-full ml-0 sm:ml-[19%] px-[15px]  sm:mt-4 mt-20 sm:px-[20px] py-[10px] sm:h-[550px]  absolute  sm:w-[800px] bg-[#F2F2F2] rounded-xl sm:shadow-md">
+      <div className="w-full ml-0 sm:ml-[20%] px-[15px]  sm:mt-4 mt-20 sm:px-[20px] py-[10px] sm:h-[550px]  absolute  sm:w-[800px] bg-[#F2F2F2] rounded-xl sm:shadow-md">
         <div className="mt-2">
           <div className=" text-center">
             {/* <FaUserTie className="text-3xl sm:text-4xl" /> */}
@@ -221,15 +231,15 @@ useEffect(() => {
           {
             Request.status === "Approved" && (
 
-              <div className="absolute items-center  sm:block sm:ml-0  sm:mt-0 mt-[80px] right-4 sm:right-8 top-24  ">
+              <div className="absolute items-center  sm:block sm:ml-10  sm:mt-0 mt-[70px] right-4 sm:right-8 top-24  ">
                 <div onClick={generatePDF} className="flex gap-2 sm:mr-10 sm:mt-0    items-center">
                   <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                {/* <BsQrCode values={`https://www.google.com`}  className="text-7xl sm:text-8xl sm:mt-5 mt-6   sm:ml-3" /> */}
-                {/* Display the QR code */}
-                <QRCode className="mt-[-100px] sm:mt-[-50px] w-[100px] sm:w-[120px]" value={`http://localhost:5173/workerMessageView/${params.id}`} />
-
+                <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
+                  <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
+                  {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
+                </div>              
               </div>
           )
         }

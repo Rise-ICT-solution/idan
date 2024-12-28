@@ -55,7 +55,7 @@ const generatePDF = () => {
 
   // Generate the QR code
   const qr = new QRious({
-    value: `http://localhost:7000/idan/ApprovedWorker/${params.id}`, 
+    value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
     size: 100, // Size of the QR code
   });
 
@@ -149,7 +149,7 @@ useEffect(() => {
     HandleGetRequests();
     const qr = new QRious({
       element: qrRef.current,
-      value: `http://localhost:7000/idan/ApprovedWorker/${params.id}`,
+      value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
       size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
     });
 },[])
@@ -236,7 +236,7 @@ useEffect(() => {
                   <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <div className="text-center mt-[-20px] sm:mt-2 ml-[-10px]">
+                <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
                   <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
                   {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
                 </div>              

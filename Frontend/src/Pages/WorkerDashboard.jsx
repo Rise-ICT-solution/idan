@@ -60,7 +60,7 @@ function WorkerDashboard (){
                     </div>
                 </div>
 
-                <div className=" w-[360px] sm:w-full sm:ml-[18%] px-[10px] top-5 absolute sm:mt-[15%] mt-[90%] ">
+                <div className=" w-[360px] sm:w-full sm:ml-[20%] px-[10px] top-5 absolute sm:mt-[15%] mt-[90%] ">
                     <h1 className="text-[23px] font-semibold">Previous Requests</h1>
                     {requests.length > 0 ? (
                         <div className=" w-[360px] sm:w-full  px-[1px] top-5 absolute mt-[8%] sm:mt-[2%] max-4-6xl sm:max-w-4xl max-auto overflow-x-auto sm:overflow-hidden">

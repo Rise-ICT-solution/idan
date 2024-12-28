@@ -55,12 +55,12 @@ function ManagerDashboard (){
     useEffect(() => {
         getAllPendingRequests()
     },[])
-    return <div className="w-full bg-[#DADADA] fixed flex h-screen">
-        <div className=" fixed">
+    return <div className=" flex justify-between w-full h-screen">
+        <div className=" z-20 fixed">
             <ManagerHeader setSearchByID={setSearchByID} />
             <ManagerSidebar />
         </div>
-        <div className="pt-5  bg-[#F1F1F1]  mt-24 w-[950px] h-[screen rounded-xl pb-10 px-[10px] overflow-h-dden w-full h-screen  sm:ml-[18%]">
+        <div className="  sm:pt-20 pt-24 sm:ml-[18%] m overflow-y-auto  px-[10px]">
             <h1 className="text-[20px]  font-semibold "> Dashboard Overview </h1>
             <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-y-4 gap-x-5  sm:ml-12 grid sm:gap-16 sm:mt-0 ">
                 <Link to="/pendingRequests"><OverView icon={ImSpinner3}  Users="Pending Requests" Count={pendingCount} /></Link>
@@ -70,7 +70,7 @@ function ManagerDashboard (){
             <div className=" w-[360px] sm:w-full sm:ml-[3%]  top-5 absolute sm:mt-[20.5%] mt-[95%] ">
                 <h1 className="font-semibold text-[20px]"> Waiting Requests</h1>
                 {PendingRequests.length > 0 ? (
-                    <div className="w-[360px] sm:w-full h-screen   px-[1px] top-5 absolute mt-[1%] sm:mtsm:-[1 p-3%] max-4-6xl sm:max-w-4xl max-auto  overflow-hidden">
+                    <div className="w-[360px] sm:w-full h-screen   px-[1px] top-5 absolute mt-[1%]   max-4-6xl sm:max-w-4xl max-auto  overflow-auto">
                         <table className=" shadow-md rounded-lg mt-2 w-[850px] text-left border-collabse">
                             <thead>
                                 <tr className="bg-[#008081] text-white font-semibold">
