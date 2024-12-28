@@ -49,7 +49,7 @@ function ManagerSidebar ({setSearchByID}){
         {/* Mobile reposnive header  */}
         <div className="flex w-full justify-between px-[20px] items-center">
             <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold text-center font-Roboto"> iDan </h1> 
-            <div className="hidden  sm:hidden ">
+            <div className="flex  sm:hidden ">
                         <input onChange={(e) => setSearchByID(e.target.value)} type="text" placeholder="Search by ID" className="w-[180px] pl-8 border-[1px] h-[40px] text-black bg-lightBlue outline-none rounded-[10px] px-2" />
                         <IoIosSearch className="text-[22px] text-black ml-2 absolute mt-[10px]" />
                     </div>
