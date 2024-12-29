@@ -6,6 +6,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {toast, Toaster} from "react-hot-toast"
 
 
 
@@ -24,8 +25,10 @@ function AdminDetail (){
 
     const HandleDeleteAdmin = (_id) =>{
         axios.delete(`http://localhost:7000/admin/delete/${params._id}`).then(() => {
-         alert("Admin has been deleted successfully")   
-         navigate("/totalAdmins")
+         toast.success("Admin has been deleted successfully")
+         setTimeout(() => {
+             navigate("/totalAdmins")
+         },2000)
         }).catch((error) => {
             console.log(error)
         })
@@ -65,6 +68,7 @@ function AdminDetail (){
 
             </form>
         </div>
+        <Toaster />
     </div>
 }
 export default AdminDetail

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { FaRegCircleUser } from "react-icons/fa6"; // Assuming the same icon
 import WorkerSideBar from "../Components/WorkerSideBar";
 import { useParams } from "react-router-dom";
+import {toast, Toaster} from "react-hot-toast";
 
 function WorkerViewBox() {
   const params = useParams();
@@ -36,10 +37,12 @@ function WorkerViewBox() {
     console.log(ViewMore.id)
     axios.delete(`http://localhost:7000/requests/delete/${params.id}`).then((response) => {
         console.log(response);
-        alert("Request has been deleted successfully");
-        navigate("/workerDashboard");
+        toast.success("Request has been deleted successfully");
+        setTimeout(() => {
+          navigate("/workerDashboard");
+        },2000)
       }).catch((err) => {
-        alert("Error in deleting request");
+        toast.error("Error in deleting request")
         console.log(err);
       });
   };
@@ -115,6 +118,7 @@ function WorkerViewBox() {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }

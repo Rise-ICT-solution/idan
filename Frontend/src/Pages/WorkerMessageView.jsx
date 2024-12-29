@@ -159,11 +159,11 @@ doc.text(`${JSON.parse(admin).title}`, 10, 220);
 
 useEffect(() => {
     HandleGetRequests();
-    const qr = new QRious({
-      element: qrRef.current,
-      value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
-      size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
-    });
+    // const qr = new QRious({
+    //   element: qrRef.current,
+    //   value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
+    //   size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
+    // });
 },[])
   return (
     <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
@@ -248,10 +248,10 @@ useEffect(() => {
                   <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
-                  <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
+                {/* <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]"> */}
+                  {/* <canvas ref={qrRef} className="mx-auto "></canvas> QR code displayed here */}
                   {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
-                </div>              
+                {/* </div>               */}
               </div>
           )
         }

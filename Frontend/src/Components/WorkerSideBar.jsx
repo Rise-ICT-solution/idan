@@ -29,9 +29,11 @@ const HandleClose = () => {
     }
 
     return <div> 
-    <div className=" bg-[#008081] fixed h-[60px]  sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]       ">
+    <div className="bg-[#008081] fixed h-[60px]  sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]">
+        <div>
         <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold text-center font-Roboto"> iDan </h1>
-        <div className=" sm:block flex items-center sm:mt-20 px-[10px]  ">
+        </div>
+        <div className=" sm:block  flex items-center sm:mt-20 px-[10px]  ">
             <NavLink to="/workerDashboard">
                 <div className="flex gap-2 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <LuLayoutDashboard className="sm:text-[28px] text-[30px] sm:hover:text-white hover:text-black ml-5  text-white" />
@@ -44,14 +46,6 @@ const HandleClose = () => {
                     <h1 className="text-white hidden sm:flex text-[18px]">Create request</h1>
                 </div>
             </NavLink>
-
-            {/* <NavLink to="/workerNotification">
-                <div className="flex gap-2 mt-4 items-center hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
-                    <IoMdNotificationsOutline className="text-[28px] ml-4  text-white" />
-                    <h1 className="text-white text-[18px]">Messages</h1>
-                </div>
-            </NavLink> */}
-            
             <div className="flex gap-2 sm:mt-4 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px]">
                 <div className="ml-2 flex items-center sm:ml-0" onClick={() => setIsUserOpen(!IsUserOpen)}>
                     {IsUserOpen ? (

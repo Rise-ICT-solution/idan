@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineBackspace } from "react-icons/hi2";
+import {toast, Toaster} from "react-hot-toast"
 
 function AdminUpdate (){
     const params = useParams()
@@ -39,8 +40,10 @@ function AdminUpdate (){
             "telephone" : PhoneNumber,
             "password" : Password
         }).then(() => {
-            alert("Admin has been updated successfully")
-            navigate("/totalAdmins")
+            toast.success("Admin updated successfully")
+            setTimeout(() => {
+                navigate("/totalAdmins")
+            },2000)
         }).catch((error) => {
             console.log(error);
         })
@@ -77,6 +80,7 @@ function AdminUpdate (){
 
             </form>
         </div>
+        <Toaster />
     </div>
 }
 export default AdminUpdate

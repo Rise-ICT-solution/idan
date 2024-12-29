@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ManagerSidebar from "../Components/ManagerSidebar";
+import {toast, Toaster} from "react-hot-toast";
 function AddAdmin (){
     const navigate = useNavigate();
     const [ID, setID] = useState("")
@@ -23,8 +24,10 @@ function AddAdmin (){
             "telephone" : PhoneNumber,
             "password" : Password
         }).then(() => {
-            alert("Admin has been added successfully")
-            navigate("/totalAdmins")
+            toast.success("Admin has been added successfully")
+            setTimeout(() => {
+                navigate("/totalAdmins")
+            },2000)
         })
     }
     return <div>
@@ -52,13 +55,14 @@ function AddAdmin (){
                     <label className="text-deepBlue  ">Phone Number</label>
                     <input value={PhoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} type="tell" placeholder="Enter phone number" className="w-[300px] h-[40px] mb-2 text-deepBlue border-2 border-[#008081] outline-none rounded-[10px] px-2" />
                     <label className="text-deepBlue  ">Password</label>
-                    <input value={Password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Enter password" className="w-[300px] h-[40px] text-deepBlue border-2 border-[#008081] outline-none rounded-[10px] px-2" />
+                    <input value={Password} onChange={(event) => setPassword(event.target.value)} type="tel" placeholder="Enter password" className="w-[300px] h-[40px] text-deepBlue border-2 border-[#008081] outline-none rounded-[10px] px-2" />
                     <button onClick={HandleAddAdmin} className="w-[300px] h-[40px] text-white  bg-[#008081] hover:bg-[#0e0e0e] rounded-[10px] mt-5" placeholder="Enter Permission Reason"> Submit</button>
                 </div>
 
             </form>
         </div>
     </div>
+    <Toaster />
     </div>
 }
 export default AddAdmin

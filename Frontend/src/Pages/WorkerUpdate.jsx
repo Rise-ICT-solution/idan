@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import {toast, Toaster} from "react-hot-toast";
 function WorkerUpdate (){
     const params = useParams()
     const navigate = useNavigate();
@@ -36,8 +37,10 @@ function WorkerUpdate (){
             "telephone" : PhoneNumber,
             "password" : Password
         }).then(() => {
-            alert("Admin has been updated successfully")
-            navigate("/totalWorkers")
+            toast.success("Worker has been updated successfully")
+            setTimeout(() => {
+                navigate("/totalWorkers")
+            },2000)
         }).catch((error) => {
             console.log(error);
         })
@@ -76,6 +79,7 @@ function WorkerUpdate (){
 
             </form>
         </div>
+        <Toaster />
     </div>
 }
 export default WorkerUpdate

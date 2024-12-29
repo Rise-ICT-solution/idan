@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import {toast, Toaster} from "react-hot-toast"
 import ManagerSidebar from "../Components/ManagerSidebar";
 function AddWorker (){
     const navigate = useNavigate();
@@ -23,8 +24,10 @@ function AddWorker (){
             "telephone" : PhoneNumber,
             "password" : Password
         }).then(() => {
-            alert("Worker has been added successfully")
-            navigate("/totalWorkers")
+            toast.success("Worker has been added successfully")
+            setTimeout(() => {
+                navigate("/totalWorkers")
+            },2000)
         }).catch((error) => {
             console.log(error)
         })
@@ -54,13 +57,14 @@ function AddWorker (){
                     <label className="text-deepBlue  ">Phone Number</label>
                     <input value={PhoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} type="tell" placeholder="Enter phone number" className="w-[300px] border-2 border-[#008081] h-[40px] mb-2 text-deepBlue bg-lightBlue outline-none rounded-[10px] px-2" />
                     <label className="text-deepBlue  ">Password</label>
-                    <input value={Password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Enter password" className="w-[300px] h-[40px] border-2 border-[#008081] text-deepBlue bg-lightBlue outline-none rounded-[10px] px-2" />
+                    <input value={Password} onChange={(event) => setPassword(event.target.value)} type="tel" placeholder="Enter password" className="w-[300px] h-[40px] border-2 border-[#008081] text-deepBlue bg-lightBlue outline-none rounded-[10px] px-2" />
                     <button onClick={HandleAddWorker} className="w-[300px] h-[40px] text-white  bg-[#008081] hover:bg-[#0e0e0e] rounded-[10px] mt-5" placeholder="Enter Permission Reason"> Submit</button>
                 </div>
 
             </form>
         </div>
     </div>
+    <Toaster />
     </div>
 }
 export default AddWorker
