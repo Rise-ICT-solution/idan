@@ -6,15 +6,19 @@ import { FaUserSlash } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import WorkerOverView from "../Components/WorkerOverView";
 import WorkerSideBar from "../Components/WorkerSideBar";
+import WorkerFooter from "../Components/WorkerFooter";
+import { HashLoader } from "react-spinners";
 
 function WorkerDashboard() {
     const [requests, setRequests] = useState([]);
     const [approvedCount, setApprovedCount] = useState(0); // State for approved requests count
     const [pendingCount, setPendingCount] = useState(0);   // State for pending requests count
     const [rejectedCount, setRejectedCount] = useState(0); // State for rejected requests count
+    const [Loading, setLoading] = useState(false);
     const id = localStorage.getItem("worker");
 
     const HandleGetResult = () => {
+        setLoading(true);
         axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`)
             .then((response) => {
                 setRequests(response.data);
@@ -31,7 +35,10 @@ function WorkerDashboard() {
             .catch((error) => {
                 console.log(error);
                 alert("Error in getting requests");
-            });
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     };
 
     useEffect(() => {
@@ -39,22 +46,22 @@ function WorkerDashboard() {
     }, []);
 
     return (
-        <div className="flex h-screen">
+        <div className=" flex h-screen">
             {/* Sidebar */}
-            <div className="w-[250px] h-full fixed top-0 left-0 z-20">
+            <div className="sm:w-[250px]  sm:fixed">
                 <WorkerSideBar />
             </div>
 
             {/* Main content */}
-            <div className="flex-1 sm:ml-[250px] overflow-y-auto">
+            <div className=" sm:ml-[230px]  overflow-y-auto">
                 <div className="pt-10 px-4 mt-12 sm:mt-0">
                     <h1 className="text-[25px] font-semibold">Request Status Insights</h1>
-                    <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-5 grid sm:gap-24">
+                    <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-6 grid sm:gap-24">
                         <Link to="/workerPendingRequests">
                             <WorkerOverView icon={ImSpinner3} IconColor="text-black" Users="Pending Requests" Count={pendingCount} />
                         </Link>
                         <Link to="/workerAcceptedRequests">
-                            <WorkerOverView icon={FaCheckDouble} IconColor="text-black" Users="Accepted Requests" Count={approvedCount} /> 
+                            <WorkerOverView icon={FaCheckDouble} IconColor="text-black" Users="Approved Requests" Count={approvedCount} /> 
                         </Link>
                         <Link to="/workerRejectedRequests">
                             <WorkerOverView icon={FaUserSlash} IconColor="text-black" Users="Rejected Requests" Count={rejectedCount} />
@@ -64,7 +71,10 @@ function WorkerDashboard() {
 
                 <div className="px-4 mt-10">
                     <h1 className="text-[23px] font-semibold">Previous Requests</h1>
-                    {requests.length > 0 ? (
+                    {
+                        Loading == true ? (
+                        <HashLoader className=" sm:ml-[450px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+                        ) : requests.length > 0 ? (
                         <div className="mt-4 overflow-x-auto">
                             <table className="shadow-md rounded-lg w-full text-left border-collapse">
                                 <thead>
@@ -108,10 +118,11 @@ function WorkerDashboard() {
                         </div>
                     ) : (
                         <div>
-                            <h1 className="text-[20px] font-semibold pt-60 text-center text-red-500">NO Requests were found</h1>
+                            <h1 className="text-[20px] font-semibold pt-32 text-center text-red-500">NO Requests were found</h1>
                         </div>
-                    )}
+                    )},
                 </div>
+                <WorkerFooter />
             </div>
         </div>
     );

@@ -4,16 +4,19 @@ import ManagerHeader from "../Components/ManagerHeader";
 import ManagerSidebar from "../Components/ManagerSidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
 function PendingRequests() {
   const [PendingRequests, setPendingRequests] = useState([]);
   const [PendingCount, setPendingCount] = useState(0);
   const [SearchByID, setSearchByID] = useState(""); // State for search input
+  const [Loading, setLoading] = useState(true);
 
   // const filteredRequests = PendingRequests.filter((request) =>
   //   request.ID.toLowerCase().includes(SearchByID.toLowerCase())
   // );
   const getAllPendingRequests = () => {
+    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
@@ -24,7 +27,10 @@ function PendingRequests() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+    })
   };
 
   const SearchWorkersRequestByID = PendingRequests.filter((request) => 
@@ -58,7 +64,9 @@ function PendingRequests() {
 
         {/* Scrollable Table Section */}
         {/* Search words requests by */}
-          { SearchWorkersRequestByID.length > 0 ? (
+        { Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ): SearchWorkersRequestByID.length > 0 ? (
         <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
           {/* Set the height and apply scrolling */}
 

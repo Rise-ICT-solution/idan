@@ -28,12 +28,10 @@ const HandleClose = () => {
         navigate("/");
     }
 
-    return <div> 
-    <div className="bg-[#008081] fixed h-[60px]  sm:h-screen  sm:block flex mb-[400px]  justify-between px-[15px] sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]">
-        <div>
-        <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold text-center font-Roboto"> iDan </h1>
-        </div>
-        <div className=" sm:block  flex items-center sm:mt-20 px-[10px]  ">
+    return <div className=" "> 
+    <div className="bg-[#008081] fixed h-[60px]  sm:h-screen  sm:block flex mb-[400px]   justify-between  sm:px-0 items-center  top-0  sm:pt-4  w-full sm:w-[16%]">
+        <h1 className=" text-[25px] text-white sm:pb-5 sm:w-full font-semibold ml-[42%] sm:ml-0 text-center font-Roboto"> iDan </h1>
+        <div className=" sm:block hidden   items-center sm:mt-20 px-[10px]  ">
             <NavLink to="/workerDashboard">
                 <div className="flex gap-2 items-center sm:hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <LuLayoutDashboard className="sm:text-[28px] text-[30px] sm:hover:text-white hover:text-black ml-5  text-white" />
@@ -67,10 +65,11 @@ const HandleClose = () => {
                 <h1 className="text-[18px] text-center font-semibold font-Roboto"> {JSON.parse(worker).name} </h1>
                 <h1 className="text-[16px]  font-Roboto"> <span className="font-semibold">ID:</span> {JSON.parse(worker).id} </h1>
                 <h1 className="text-[16px]  font-Roboto"> <span className="font-semibold">Title:</span> {JSON.parse(worker).title} </h1>
-            <button onClick={LogOut} className="w-[100px] flex items-center gap-2 justify-center px-1  h-[35px] mt-3 text-white bg-[#008081] hover:bg-[#0E0E0E] rounded-[5px] ml-7"> Log Out <RiShutDownLine className="w-[20px] h-[20px] " /></button>
+                <button onClick={LogOut} className="w-[100px] flex items-center gap-2 justify-center px-1  h-[35px] mt-3 text-white bg-[#008081] hover:bg-[#0E0E0E] rounded-[5px] ml-7"> Log Out <RiShutDownLine className="w-[20px] h-[20px] " /></button>
             </div>
         </div>
     </div>
+    
 </div>
 }
 export default WorkerSideBar

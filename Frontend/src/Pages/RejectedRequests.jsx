@@ -4,12 +4,14 @@ import ManagerHeader from "../Components/ManagerHeader";
 import ManagerSidebar from "../Components/ManagerSidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { HashLoader } from "react-spinners";
 function RejectedRequests() {
   const [RejectedRequests, setRejectedRequests] = useState([]);
   const [SearchByID, setSearchByID] = useState("");
+  const [Loading, setLoading] = useState(true);
 
   const getAllRejectedRequests = () => {
+    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
@@ -18,7 +20,8 @@ function RejectedRequests() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -53,7 +56,9 @@ function RejectedRequests() {
         </div>
 
         {/* Table Section */}
-        {SearchWorkersRequestByID.length > 0 ? (
+        { Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ):SearchWorkersRequestByID.length > 0 ? (
           <div className="w-full mt-3 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
             <div className="max-h-[600px] overflow-y-auto">
               <table className="table-auto shadow-md w-full text-left border-collapse">

@@ -4,11 +4,13 @@ import ManagerHeader from "../Components/ManagerHeader";
 import ManagerSidebar from "../Components/ManagerSidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
 function AcceptedRequests() {
   const [AcceptedRequests, setAcceptedRequests] = useState([]); // State for accepted requests
   const [requests, setRequests] = useState([]); // State for all requests
   const [SearchByID, setSearchByID] = useState(""); // State for search input
+  const [Loading, setLoading] = useState(true); // State for loading spinner
 
   // Filter requests by ID based on the search input
   const SearchWorkersRequestByID = AcceptedRequests.filter((request) =>
@@ -16,6 +18,7 @@ function AcceptedRequests() {
   );
 
   const getAllAcceptedRequests = () => {
+    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
@@ -25,6 +28,9 @@ function AcceptedRequests() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false); // Hide loading spinner
       });
   };
 
@@ -53,7 +59,9 @@ function AcceptedRequests() {
         </div>
 
         {/* Check if there are requests to display */}
-        {SearchWorkersRequestByID.length > 0 ? (
+        { Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ): SearchWorkersRequestByID.length > 0 ? (
           <div className="w-full mt-5 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
             <div className="max-h-[600px] overflow-y-auto">
               <table className="table-auto shadow-md w-full text-left border-collapse">
