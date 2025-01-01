@@ -27,6 +27,7 @@ import WorkerPendingRequests from "./Pages/WorkerPending"
 import WorkerRejectedRequests from "./Pages/WorkerRejected"
 import WorkerAcceptedRequests from "./Pages/WorkerAccepted"
 import ApprovedScan from "./Pages/ApprovedScan"
+
 function App (){
   return <Routes>
     <Route path="/" element={<LoginPage/>} />

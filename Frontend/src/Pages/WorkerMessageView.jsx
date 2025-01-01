@@ -155,6 +155,7 @@ doc.text(`${JSON.parse(admin).title}`, 10, 220);
   doc.save("worker_request_report.pdf");
 };
 
+const [handleQRCode , setHandleQrCode] = useState(false)
 
 
 useEffect(() => {
@@ -164,7 +165,9 @@ useEffect(() => {
       value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
       size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
     });
+    setHandleQrCode(true)
 },[])
+
   return (
     <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
       <WorkerSideBar />
@@ -248,8 +251,8 @@ useEffect(() => {
                   <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
-                  <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
+                <div className="text-center  mt-[20px] ml-[-10px]">
+                { handleQRCode == false ?  <canvas ref={qrRef} className=" "></canvas> :  <canvas ref={qrRef} className=" "></canvas> } {/* QR code displayed here */}
                   {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
                 </div>              
               </div>
