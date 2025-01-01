@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiShutDownLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
+import { FiKey } from "react-icons/fi";
 
 
 function ManagerSidebar ({setSearchByID}){
@@ -116,6 +117,12 @@ function ManagerSidebar ({setSearchByID}){
                 <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <TbUserPlus className="text-[28px] ml-5  text-white" />
                     <h1 className="text-white text-[18px]">Add Worker</h1>
+                </div>
+            </Link>
+            <Link to="/GetUserIdOnly">
+                <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
+                <FiKey className="text-[28px] ml-5  text-white" />
+                <h1 className="text-white text-[18px]">Add Worker</h1>
                 </div>
             </Link>
         

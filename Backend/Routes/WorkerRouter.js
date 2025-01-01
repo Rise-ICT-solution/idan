@@ -1,21 +1,12 @@
 const express = require("express")
 const Worker = express.Router();
-const WorkerSchema = require("../Model/WorkerSchema")
+ const {workerCreate,workerGettAll,workerUpdate,workerdelete,workerLogin,SingleWorker} = require("../controllers/WorkerController")
 
 
-Worker.post("/worker/create", async (req, res) => {
-    const newWorker = WorkerSchema(req.body)
-    const saveWorker = await newWorker.save()
-    if (saveWorker){
-        res.send("Worker has Added successfully")
-    }
-});
+Worker.post("/worker/create", workerCreate);
 
 
-Worker.get("/worker/read", async (req, res) => {
-    const Allworkers = await WorkerSchema.find()
-    res.send(Allworkers)
-})
+Worker.get("/worker/read", workerGettAll)
 
 //Get Single Workers AutoData 
 // Worker.get("/worker/AutoData/:id", async (req, res) => {
@@ -28,57 +19,14 @@ Worker.get("/worker/read", async (req, res) => {
 // })
 
 //an API that updates Workers data 
-Worker.put("/worker/update/:id", async (req, res) => {
-    const updateWorker = await WorkerSchema.updateOne({_id: req.params.id},
-        {
-            $set:{
-                name: req.body.name,
-                id: req.body.id,
-                title: req.body.title,
-                email: req.body.email,
-                telephone: req.body.telephone,
-                password: req.body.password
-            }
-        }
-    )
-    if (updateWorker){
-        res.send("Worker Has been updated successfully")
-    }
-})
+Worker.put("/worker/update/:id", workerUpdate)
 
 //an API that deletes Workers data
-Worker.delete("/worker/delete/:id", async (req, res) => {
-    const deleteWorker = await WorkerSchema.deleteOne({_id: req.params.id})
-    if (deleteWorker){
-        res.send("Worker has been deleted successfully ")
-    }
-})
+Worker.delete("/worker/delete/:id", workerdelete)
 
 
 // API to login a worker in the worker login page 
-Worker.post("/worker/login", async (req, res) => {
-    if (req.body.id && req.body.password){
-        const worker  = await WorkerSchema.findOne(req.body).select("-password -email -telephone ")
-        if (worker){
-            res.send({success: "Worker has been logged in successfully", worker})
-        }
-        else {
-            res.send({error: " Incorrect ID or Password", worker})
-        }
-        // if (worker){
-        //     const workerRequests = await WorkerSchema.find({id: worker.id})
-        //     res.send({
-        //         worker:{
-        //             id:worker.id
-        //         }, 
-        //         requests: workerRequests
-            // })
-        }
-        else {
-            res.send({empty: "Worker ID and Password are required "})
-        }
-    
-})
+Worker.post("/worker/login", workerLogin)
 
 // API to get all requests for a specific worker
 // Worker.post("/worker/PrivateRequests", async (req, res) => {
@@ -111,12 +59,7 @@ Worker.post("/worker/login", async (req, res) => {
 //     }
 // });
 
-Worker.get("/SingleWorker/:id", async (req, res) => {
-    const GetSingleWorker = await WorkerSchema.findOne({_id: req.params.id})
-    if (GetSingleWorker){
-        res.send(GetSingleWorker)
-    }
-})
+Worker.get("/SingleWorker/:id", SingleWorker)
 
 
 
