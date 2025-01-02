@@ -16,6 +16,8 @@ Admin.put("/Admin/update/:id", updateAdmin)
 Admin.delete("/admin/delete/:id", deleteAdmin)
 
 
+
+
 //An API that get the ID and Password of the Admin
 
 Admin.post("/admin/login", adminLogin)

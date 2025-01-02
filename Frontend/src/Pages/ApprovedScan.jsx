@@ -45,10 +45,15 @@ function ApprovedScan() {
     })
 }
 const calculateDuration = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = Math.floor((end - start) / (1000 * 3600 * 24)); // Difference in days
-  setRequest((prevState) => ({ ...prevState, duration })); // Update the duration in state
+  if (startDate && endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    // Ensure both dates are valid and calculate the duration in days
+    const duration = Math.floor((end - start) / (1000 * 3600 * 24)); // Difference in days
+    setDuration(duration); // Set the calculated duration in state
+    setRequest((prevState) => ({ ...prevState, duration })); // Update the duration in state
+
+  }
 };
 const generatePDF = () => {
   const doc = new jsPDF();
@@ -248,10 +253,11 @@ useEffect(() => {
                   <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
-                  <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
-                  {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
-                </div>              
+                {/* QR code is not needed to display in the Approved scan page or any other page except pdf page */}
+                {/* <div className="text-center  sm:mt-[20px] mt-0 ml-[-10px]">
+                  <canvas ref={qrRef} className="mx-auto "></canvas> 
+                  <h1 className="sm:text-sm font-semibold">Scan QR</h1>
+                </div>               */}
               </div>
           )
         }

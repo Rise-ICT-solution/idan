@@ -28,16 +28,6 @@ function ManagerSidebar ({setSearchByID}){
     const [IsOpen , setIsOpen] = useState(false)
     const [IsProfileOpen , setIsProfileOpen] = useState(false)
 
-    // const filteredWorkers = workers.filter(worker => 
-    //     worker.id.toString().includes(SearchInput)
-    // );
-
-    // const HandleOpenProfile = () => {
-    //     setIsProfileOpen(true)
-    // }
-    // const HandleCloseProfile = () => {
-    //     setIsProfileOpen(false)
-    // }
 
     const HandleOpen = () => {
         setIsOpen(true)
@@ -86,8 +76,8 @@ function ManagerSidebar ({setSearchByID}){
                 </div>
             </div>
         </div>
-        {/* Drop down side bar */}
-        <div style={{display: IsOpen == true ? "block" : ""}} className="sm:block w-full h-[300px] bg-[#008081] rounded-b-[20px] absolute top-[68px] hidden items-center sm:mt-10 px-[px]">
+        {/* Drop down side bar  */}
+        <div style={{display: IsOpen == true ? "block" : ""}} className="sm:block w-full pb-4 bg-[#008081] rounded-b-[20px] absolute top-[68px] hidden items-center sm:mt-10 px-[px]">
           
             <Link to="/managerDashboard">
                 <div className="flex gap-2 items-center w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
@@ -119,10 +109,10 @@ function ManagerSidebar ({setSearchByID}){
                     <h1 className="text-white text-[18px]">Add Worker</h1>
                 </div>
             </Link>
-            <Link to="/GetUserIdOnly">
-                <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
+            <Link to="/resetPassword">
+                <div className="flex gap-2 items-center mt-5 w-[200px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                 <FiKey className="text-[28px] ml-5  text-white" />
-                <h1 className="text-white text-[18px]">Add Worker</h1>
+                <h1 className="text-white text-[18px]">Reset Passwords </h1>
                 </div>
             </Link>
         

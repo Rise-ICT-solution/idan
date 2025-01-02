@@ -17,7 +17,7 @@ function AddWorker (){
     const HandleAddWorker = (e) => {
         e.preventDefault()
         axios.post("http://localhost:7000/worker/create", {
-            "name" : Name,
+            "name": Name,
             "id" : ID,
             "title" : Title,
             "email" : Email,
