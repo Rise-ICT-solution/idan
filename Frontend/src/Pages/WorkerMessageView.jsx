@@ -165,11 +165,9 @@ useEffect(() => {
       value: `${window.location.origin}/idan/ApprovedWorker/${params.id}`, // Use window.location.origin to dynamically set the correct URL
       size: window.innerWidth < 640 ? 90 : 150, // Set size conditionally based on screen width
     });
-    setHandleQrCode(true)
 },[])
 
-  return (
-    <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
+  return <div className="w-full bg-fixed overflow-hidden h-screen bg-[#DADADA] ">
       <WorkerSideBar />
       <div className="w-full ml-0 sm:ml-[25%] px-[15px]  sm:mt-4 mt-20 sm:px-[20px] py-[10px] sm:h-[550px]  absolute  sm:w-[800px] bg-[#F2F2F2] rounded-xl sm:shadow-md">
         <div className="mt-2">
@@ -243,25 +241,26 @@ useEffect(() => {
               <FaArrowLeft className="text-2xl sm:text-3xl ml-[-100px] mt-10 text-deepBlue hover:text-skyBlue" />
             </Link>
           </div>
+          </div>
           {
             Request.status === "Approved" && (
 
               <div className="absolute items-center  sm:block sm:ml-10  sm:mt-0 mt-[70px] right-4 sm:right-8 top-24  ">
-                <div onClick={generatePDF} className="flex gap-2 sm:mr-10 sm:mt-0    items-center">
-                  <FaFileDownload   className="text-[35px] mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
+                <div onClick={generatePDF} className="flex cursor-pointer gap-2 sm:mr-10 sm:mt-0    items-center">
+                  <FaFileDownload   className="text-[35px] mt-[300px] sm:mt-0 mb-8 sm:mb-0 ml-4 sm:ml-0 sm:text-[22px]" />
                   <h1 className=" sm:text-sm hidden sm:flex  font-semibold">Download File</h1>
                 </div>
-                <div className="text-center  mt-[20px] ml-[-10px]">
-                { handleQRCode == false ?  <canvas ref={qrRef} className=" "></canvas> :  <canvas ref={qrRef} className=" "></canvas> } {/* QR code displayed here */}
+                <div className="text-center  sm:mt-[20px] hidden mt-0 ml-[-10px]">
+                  <canvas ref={qrRef} className="mx-auto "></canvas> {/* QR code displayed here */}
                   {/* <h1 className="sm:text-sm font-semibold">Scan QR</h1> */}
-                </div>              
+                {/* </div>               */}
               </div>
+        </div>
           )
         }
-        </div>
       </div>
-    </div>
-  );
+      </div>
+  
 }
 
 export default WorkerMessageView;

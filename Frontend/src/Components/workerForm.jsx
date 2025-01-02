@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import WorkerSideBar from "./WorkerSideBar";
-
+import {toast, Toaster} from "react-hot-toast";
 function WorkerForm() {
     const [StartDate, setStartDate] = useState("");
     const [EndDate, setEndDate] = useState("");
@@ -29,11 +29,17 @@ function WorkerForm() {
             "reason": PermissionReason
         }).then((response) => {
             if(response.data.error){
-                alert("Error");
+                // alert("Error");
+                setTimeout(() => {
+                    toast.error("Error in sending request")
+                },2000)
             }
             else {
-                alert("Request has been sent successfully");
-                navigate("/workerDashboard");
+                // alert("Request has been sent successfully");
+                toast.success("Request sent successfully");
+                setTimeout(() => {
+                    navigate("/workerDashboard");
+                },2000)
                 calculateDuration(response.data.startDate, response.data.endDate); // Calculate duration when data is fetched
             }
         }).catch((error) => {
@@ -62,7 +68,7 @@ function WorkerForm() {
     return <div>
         <WorkerSideBar />
         <div className="bg-[#D9D9D9] w-full h-screen py-12">
-            <div className="w-[370px] px-2 ml-2 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-[#F2F2F2] ">
+            <div className="w-[370px] px-2 ml-2 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-white ">
                 <form className="pt-4">
                     <div className="flex">
                         <Link to="/workerDashboard">
@@ -98,6 +104,7 @@ function WorkerForm() {
                 </form>
             </div>
         </div>
+        <Toaster />
     </div>
 }
 

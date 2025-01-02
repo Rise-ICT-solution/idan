@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ManagerSidebar from "../Components/ManagerSidebar"
 import { FaRegCircleUser } from "react-icons/fa6";
+import {toast, Toaster} from 'react-hot-toast'
+
 
 function ManagerMessageView (){
     const params = useParams()
@@ -32,23 +34,20 @@ function ManagerMessageView (){
          
         }).then((res) => {
             if(res.data.message){
-                alert("Status has been updated")
-                // if (res.data.status === "Approved"){
-                //     navigate("/acceptedRequests")
-                // } 
-                // else if ( res.data.status === "Rejected") {
-                //     navigate("/rejectedRequests")
-                // } 
-                // else {
-                //     console.log("Stay Your page")
-                // }
-                navigate("/managerDashboard")
+                if (statusUpdate === "Approved"){
+                    toast.success("Request has been Approved successfully")
+                } else if (statusUpdate === "Rejected"){
+                    toast.success("Request has been rejected successfully")
+                }
+                setTimeout(() => {
+                    navigate("/managerDashboard")
+                },2000)
 
                 console.log(res.data)
             }
         }).catch((error) => {
             console.log(error)
-            alert("Error updating status, please try again later.");
+            toast.error("Error updating status, please try again later.");
         })
 
     }
@@ -70,7 +69,6 @@ function ManagerMessageView (){
     return  <div className="bg-[#DADADA] absolute w-full h-screen">
         <ManagerSidebar />
     <div className=" ">
-        
         <div className="sm:w-[450px] w-[365px] ml-3  px-[30px] sm:px-[50px] bg-[#F2F2F2] rounded-lg pt-[20px] mt-24 sm:mt-3 sm:ml-[35%] h-[550px]  shadow-[#6A6458]">
             <h1 className="text-center text-[#3b3832] font-semibold text-[20px]"> More Details </h1>
             <div className="mt-4 gap-5">
@@ -121,6 +119,7 @@ function ManagerMessageView (){
         </div>
         
     </div>
+    <Toaster />
     </div>
 }
 export default ManagerMessageView

@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 import { FaDeleteLeft } from "react-icons/fa6";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { HashLoader } from "react-spinners";
 
 function TotalWorkers() {
   const [Workers, setWorkers] = useState([]);
   const [SearchByID, setSearchByID] = useState("");
+  const [Loading, setLoading] = useState(true);
 
 
   const HandleGetWorkers = () => {
+    setLoading(true);
     axios
       .get("http://localhost:7000/worker/read")
       .then((response) => {
@@ -18,7 +21,10 @@ function TotalWorkers() {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+    })
   };
   const SearchWorkersByID = Workers.filter((worker) =>
     worker.id.toLowerCase().includes(SearchByID.toLowerCase())
@@ -41,7 +47,9 @@ function TotalWorkers() {
           <div className="pt-[10px] px-[10px]  overflow-y-auto ">
 
             {/* Scrollable Table Container */}
-            {
+            { Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ):
               SearchWorkersByID.length > 0 ? (
                 
                 <div className="sm:w-[950px] w-[700px]   bg-white rounded-lg shadow-md ">

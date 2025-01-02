@@ -7,6 +7,7 @@ import { FaUserSlash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { HashLoader } from "react-spinners";
 import axios from "axios";
 
 function ManagerDashboard() {
@@ -17,8 +18,10 @@ function ManagerDashboard() {
     const [approvedCount, setApprovedCount] = useState(0); // State for approved requests count
     const [pendingCount, setPendingCount] = useState(0);   // State for pending requests count
     const [rejectedCount, setRejectedCount] = useState(0); // State for rejected requests count
+    const [Loading, setLoading] = useState(true);
 
     const getAllPendingRequests = () => {
+        setLoading(true);
         axios.get("http://localhost:7000/requests/read")
             .then((res) => {
                 const AllRequests = res.data;
@@ -36,7 +39,10 @@ function ManagerDashboard() {
             })
             .catch((err) => {
                 console.log(err);
-            });
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     };
 
     useEffect(() => {
@@ -78,13 +84,15 @@ function ManagerDashboard() {
 
                 <div className="mt-10">
                     <h1 className="font-semibold text-[20px]">Waiting Requests</h1>
-                    {PendingRequests.length > 0 ? (
+                    { Loading == true ? (
+                        <HashLoader className=" sm:ml-[450px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+                        ) : PendingRequests.length > 0 ? (
                         <div className="overflow-auto mt-4">
                             <table className="shadow-md rounded-lg w-full text-left border-collapse">
                                 <thead>
                                     <tr className="bg-[#008081] text-white font-semibold">
                                         <td className="p-4 text-center rounded-tl-lg">No.</td>
-                                        <td className="p-4 text-center">Worker ID</td>
+                                        <td className="p-4 text-center"> ID</td>
                                         <td className="p-4 text-center">Name</td>
                                         <td className="p-4 text-center">Status</td>
                                         <td className="p-4 text-center">Destination</td>
@@ -101,7 +109,7 @@ function ManagerDashboard() {
                                             <td className="p-4 text-center">{pending.destination}</td>
                                             <td className="p-4 text-center">
                                                 <Link to={`/managerMessageView/${pending._id}`}>
-                                                    <button className="px-4 py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                                                    <button className="sm:px-4 w-[110px] py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
                                                         View More
                                                     </button>
                                                 </Link>

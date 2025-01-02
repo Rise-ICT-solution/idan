@@ -4,18 +4,24 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import WorkerSideBar from "../Components/WorkerSideBar";
+import { HashLoader } from "react-spinners";
 function WorkerRejectedRequests (){
 
     const [RejectedRequests, setRejectedRequests] = useState([])
+    const [Loading, setLoading] = useState(false)
     const id = localStorage.getItem("worker")
     
     const getAllPendingRequests = () => {
+        setLoading(true)
             axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`).then((res) => {
                 const workerRejected = res.data;
                 const filteredRequests = workerRejected.filter(request => request.status === "Rejected");
                 setRejectedRequests(filteredRequests)
             }).catch((err) => {
                 console.log(err)
+            })
+            .finally(() => {
+                setLoading(false)
             })
         }
     
@@ -33,7 +39,9 @@ function WorkerRejectedRequests (){
                 <Link to="/workerDashboard"><FaDeleteLeft className="text-[30px] sm:text-[40px] text-[#0e0e0e] hover:text-[#008081]  " /></Link>
             </div>
 
-            {RejectedRequests.length > 0 ? (
+            { Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ):RejectedRequests.length > 0 ? (
             <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
                 <table className="  w-full text-left border-collabse">
                         <thead>

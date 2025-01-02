@@ -6,6 +6,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {toast, Toaster} from "react-hot-toast";
 
 
 
@@ -24,8 +25,10 @@ function WorkerDetail (){
 
     const HandleDeleteWorker = (_id) =>{
         axios.delete(`http://localhost:7000/worker/delete/${params._id}`).then(() => {
-         alert("Worker has been deleted successfully")   
-         navigate("/totalWorkers")
+         toast.success("Worker has been deleted successfully")
+         setTimeout(() => {
+            navigate("/totalWorkers")
+        },2000)
         }).catch((error) => {
             console.log(error)
         })
@@ -65,6 +68,7 @@ function WorkerDetail (){
 
             </form>
         </div>
+        <Toaster />
     </div>
 }
 export default WorkerDetail

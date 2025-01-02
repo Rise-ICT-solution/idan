@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import {toast, Toaster} from "react-hot-toast"
 
 function ManagerLoginPage (){
     const [ID, setID] = useState("")
@@ -13,22 +14,23 @@ function ManagerLoginPage (){
             "id": ID,
             "password": Password
         }).then((response) => {
-            if (response.data.error){
-                alert("Incorrect ID or Password: ")
+            if (response.data.error) {
+                toast.error("Incorrect ID or Password");
             }
-            else if (response.data.empty){
-                alert("ID and Password are required")
+            else if (response.data.empty) {
+                toast.error("ID and Password are required");
             }
-            else (
-                alert ("Login successfully!! Welcome to your Account"),
-                localStorage.setItem("admin", JSON.stringify(response.data.admin)), // 2 da Admin kan wuxuu ka imade router ka gaar haan /admin/login waliba if admin
-                navigate("/managerDashboard")
-            )
+            else {
+                toast.success("Login Successfully!! Welcome to your account");
+                setTimeout(() => {
+                    navigate("/managerDashboard");
+                }, 2000);
+                localStorage.setItem("admin", JSON.stringify(response.data.admin)); // Store admin in local storage
+            }
         }).catch((error) => {
-            console.log(error)
-            alert("Error in Login", error)
-        })
-
+            console.log(error);
+            toast.error("Error in Login");
+        });        
     }
 
     return <div className="w-full h-screen bg-[#BEDDDF] fixed">
@@ -48,6 +50,7 @@ function ManagerLoginPage (){
         </form>
     </div>
     </div>
+    <Toaster />
     </div>
 }
 export default ManagerLoginPage

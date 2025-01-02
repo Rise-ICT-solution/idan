@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiShutDownLine } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
+import { FiKey } from "react-icons/fi";
 
 
 function ManagerSidebar ({setSearchByID}){
@@ -97,13 +98,13 @@ function ManagerSidebar ({setSearchByID}){
             <Link to="/totalAdmins">
                 <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <LiaUserTieSolid className="text-[28px] ml-5  text-white" />
-                    <h1 className="text-white text-[18px]">All admins</h1>
+                    <h1 className="text-white text-[18px]">Admins</h1>
                 </div>
             </Link>
             <Link to="/totalWorkers">
                 <div className="flex gap-2 items-center  mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <TbUsersGroup className="text-[28px] ml-5  text-white" />
-                    <h1 className="text-white text-[18px]">All workers</h1>
+                    <h1 className="text-white text-[18px]">Employees</h1>
                 </div>
             </Link>
             <Link to="/addAdmin">
@@ -115,7 +116,13 @@ function ManagerSidebar ({setSearchByID}){
             <Link to="/addWorker">
                 <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                     <TbUserPlus className="text-[28px] ml-5  text-white" />
-                    <h1 className="text-white text-[18px]">Add Worker</h1>
+                    <h1 className="text-white text-[18px]">Add Employee</h1>
+                </div>
+            </Link>
+            <Link to="/GetUserIdOnly">
+                <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
+                <FiKey className="text-[28px] ml-5  text-white" />
+                <h1 className="text-white text-[18px]">Add Worker</h1>
                 </div>
             </Link>
         

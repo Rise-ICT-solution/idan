@@ -4,30 +4,24 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import WorkerSideBar from "../Components/WorkerSideBar";
+import { HashLoader } from "react-spinners";
 function WorkerAcceptedRequests (){
 
     const [AcceptedRequests, setAcceptedRequests] = useState([])
     const [statusUpdate, setStatusUpdate] = useState("")
-
-    // Function oo update gareenaayo xaalada qofka
-    // const updateUserStatus = (id) => {
-    //     axios.put(`http://localhost:7000/update/status/${id}`, {
-    //         "status": "Approved"
-    //     }).then((res) => {
-    //         if(res.data.massage){
-    //             alert("Status has been updated")
-    //         }
-    //     }).catch((err) => console.log(err))
-    // }
-
+    const [Loading, setLoading] = useState(true)
     const id = localStorage.getItem("worker")
     const getAllApprovedRequests = () => {
+        setLoading(true)
         axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`).then((res) => {
             const workerApproved = res.data;
             const filteredRequest = workerApproved.filter((req) => req.status === "Approved")
             setAcceptedRequests(filteredRequest)
         }).catch((err) => {
             console.log(err)
+        })
+        .finally(() => {
+            setLoading(false)
         })
     }
 
@@ -44,7 +38,11 @@ function WorkerAcceptedRequests (){
                 <h1 className=" text-center text-2xl sm:text-3xl sm:ml-64   font-semibold "> Worker Accepted Requests </h1>
                 <Link to="/managerDashboard"><FaDeleteLeft className=" text-[30px] sm:text-[40px] text-[#3b3832] hover:text-[#008081]  " /></Link>
             </div>
-            {AcceptedRequests.length > 0 ? (
+            {
+                Loading == true ? (
+                    <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[180px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
+            ):
+           AcceptedRequests.length > 0 ? (
             <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">
 
             <table className=" shadow-md  w-full text-left border-collabse">
@@ -88,6 +86,7 @@ function WorkerAcceptedRequests (){
             <h1 className="text-[20px] font-semibold pt-60 ml-20 sm:text-center text-red-500">NO Requests were found</h1>
         </div>
     )}
+{/* } */}
         </div>
     </div>
 }
