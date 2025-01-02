@@ -27,8 +27,9 @@ import WorkerPendingRequests from "./Pages/WorkerPending"
 import WorkerRejectedRequests from "./Pages/WorkerRejected"
 import WorkerAcceptedRequests from "./Pages/WorkerAccepted"
 import ApprovedScan from "./Pages/ApprovedScan"
-import UserForgetPassword from "./Pages/UserForgetPassword"
-import GetUserIdOnly from "./Pages/GetUserIdOnly"
+// import UserForgetPassword from "./Pages/UserForgetPassword"
+// import GetUserIdOnly from "./Pages/GetUserIdOnly"
+
 function App (){
   return <Routes>
     <Route path="/" element={<LoginPage/>} />
@@ -58,8 +59,8 @@ function App (){
     <Route path="/adminUpdate/:_id" element={<AdminUpdate/>} />
     <Route path="/workerUpdate/:_id" element={<WorkerUpdate/>} />
     <Route path="/managerMessageView/:id" element={<ManagerMessageView/>} />
-    <Route path="/forgetUser" element={<UserForgetPassword/>} />
-    <Route path="/GetUserIdOnly" element={<GetUserIdOnly/>} />
+    {/* <Route path="/forgetUser" element={<UserForgetPassword/>} /> */}
+    {/* <Route path="/resetPassword" element={<WorkerResetPassword/>} /> */}
 
   </Routes>
 }

@@ -2,19 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 
-function UserForgetPassword() {
-  const [id, setId] = useState("");
+function WorkerResetPassword() {
+  const [ResetID, setResetID] = useState("");
 
   const handleForgetPassword = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:7000/userForget", { id })
+      .post(`http://localhost:7000/resetPassword`, )
       .then((response) => {
         if (response.data.error) {
           toast.error(response.data.error);
         } else {
-          toast.success(response.data.message);
+          toast.success("Password Recovery Request Sent Successfully");
         }
       })
       .catch((error) => {
@@ -33,22 +33,12 @@ function UserForgetPassword() {
         <form onSubmit={handleForgetPassword} className="flex flex-col space-y-4">
           <label className="flex flex-col">
             <span className="mb-1 text-teal-700 font-semibold">Worker ID:</span>
-            <input
-              type="text"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              placeholder="Enter your ID"
-              required
-              className="border border-teal-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200 transition"
+            <input type="text"  onChange={(e) => setResetID(e.target.value)}
+              placeholder="Enter your ID" required className="border border-teal-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-200 transition"
             />
           </label>
 
-          <button
-            type="submit"
-            className="bg-teal-600 hover:bg-teal-700 text-white rounded px-4 py-2 font-semibold transition"
-          >
-            Submit
-          </button>
+          <button type="submit" className="bg-teal-600 hover:bg-teal-700 text-white rounded px-4 py-2 font-semibold transition">Submit</button>
         </form>
       </div>
 
@@ -57,4 +47,4 @@ function UserForgetPassword() {
   );
 }
 
-export default UserForgetPassword;
+export default WorkerResetPassword;

@@ -1,5 +1,5 @@
 const WorkerSchema = require("../Model/WorkerSchema")
-
+const nodemailer = require("nodemailer")
 
 const workerCreate = async (req, res) => {
     const newWorker = WorkerSchema(req.body)
@@ -54,14 +54,7 @@ const workerLogin =  async (req, res) => {
         else {
             res.send({error: " Incorrect ID or Password", worker})
         }
-        // if (worker){
-        //     const workerRequests = await WorkerSchema.find({id: worker.id})
-        //     res.send({
-        //         worker:{
-        //             id:worker.id
-        //         }, 
-        //         requests: workerRequests
-            // })
+        
         }
         else {
             res.send({empty: "Worker ID and Password are required "})
@@ -70,36 +63,6 @@ const workerLogin =  async (req, res) => {
 }
 
 // API to get all requests for a specific worker
-// Worker.post("/worker/PrivateRequests", async (req, res) => {
-//     const { id, password } = req.body;
-
-//     if (id && password) {
-//         // Authenticate the worker using WorkerSchema
-//         const worker = await WorkerSchema.findOne({ id, password }); {/*.select("-password -email -telephone");*/};
-//         if (worker) {
-//             // Fetch all requests for the logged-in worker using the worker's ID
-//             const workerRequests = await WorkerSchema.find({ id: worker.id });
-
-//             if (workerRequests.length > 0) {
-//                 res.send({
-//                     worker: {
-//                         id: worker.id,
-//                         fullName: worker.name,
-//                         title: worker.title,
-//                     },
-//                     requests: workerRequests
-//                 });
-//             } else {
-//                 res.send({ message: "No requests found for this worker." });
-//             }
-//         } else {
-//             res.send({ error: "Incorrect ID or Password" });
-//         }
-//     } else {
-//         res.send({ error: "Worker ID and Password are required" });
-//     }
-// });
-
 const SingleWorker = async (req, res) => {
     const GetSingleWorker = await WorkerSchema.findOne({_id: req.params.id})
     if (GetSingleWorker){
@@ -107,5 +70,35 @@ const SingleWorker = async (req, res) => {
     }
 }
 
+//Worker Password Recovery 
+const PasswordRecovery = async (req, res) => {
+    const CheckWorkerID = await WorkerSchema.findOne({id: req.body.id})
+    if (!CheckWorkerID){
+        res.send("No worker found with this ID")
+    }
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            email: "bakaryare2003@gmail.com",
+            password: "2162"
+        }
+    })
+     const mailOptions = {
+        from: "bakaryare2003@gmail.com",
+        to: CheckWorkerID.email,
+        subject: "Password Recovery",
+        text: `Your password is: ${CheckWorkerID.password}`
+     }
+     transporter.sendMail(mailOptions, (error, info) => {
+        if (error){
+            res.send("Error for sending email")
+            console.log(error)
+        } else {
+            console.log("Email sent: " + info.response)
+            res.send("Password has sent to your email")
+        }
+     })
+}
 
-module.exports = {workerCreate,workerGettAll,workerUpdate,workerdelete,workerLogin,SingleWorker}
+
+module.exports = {workerCreate,workerGettAll,workerUpdate,workerdelete,workerLogin,SingleWorker, PasswordRecovery}

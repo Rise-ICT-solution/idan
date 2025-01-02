@@ -38,18 +38,32 @@ function WorkerMessageView() {
       setStartDate(response.data.startDate)
       setEndDate(response.data.endDate)
       calculateDuration(response.data.startDate, response.data.endDate); // Calculate duration when data is fetched
+      // durationCalculate(response.data.startDate, response.data.endDate); // Calculate duration when data is fetched
 
     }).catch((error) => {
         console.log(error)
         alert("Error in getting requests")
     })
 }
+// Calculation/ substructing date start and end date 
 const calculateDuration = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = Math.floor((end - start) / (1000 * 3600 * 24)); // Difference in days
-  setRequest((prevState) => ({ ...prevState, duration })); // Update the duration in state
+  if (startDate && endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    // Ensure both dates are valid and calculate the duration in days
+    const duration = Math.floor((end - start) / (1000 * 3600 * 24)); // Difference in days
+    setDuration(duration); // Set the calculated duration in state
+    setRequest((prevState) => ({ ...prevState, duration })); // Update the duration in state
+
+  }
 };
+// const calculateDuration = (startDate, endDate) => {
+//   const start = new Date(startDate);
+//   const end = new Date(endDate);
+//   const duration = Math.floor((end - start) / (1000 * 3600 * 24)); // Difference in days
+//   setRequest((prevState) => ({ ...prevState, duration })); // Update the duration in state
+// };
 const generatePDF = () => {
   const doc = new jsPDF();
 

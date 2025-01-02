@@ -17,7 +17,7 @@ const adminRoute = require("../Backend/Routes/AdminRouter")
 const workerRoute = require("../Backend/Routes/WorkerRouter")
 const requestRoute = require("../Backend/Routes/WorkerRequestRouter")
 const MananagerResponse = require("../Backend/Routes/ManagerResponseRouter")
-const userForgetPasword = require("./Routes/userForgetRoute")
+// const PasswordRecovery = require("./Routes/")
 
 
 
@@ -25,7 +25,7 @@ app.use(adminRoute)
 app.use(workerRoute)
 app.use(requestRoute)
 app.use(MananagerResponse)
-app.use(userForgetPasword)
+// app.use(userForgetPasword)
 
 
 app.listen(7000, () => {

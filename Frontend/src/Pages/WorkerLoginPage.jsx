@@ -45,8 +45,12 @@ function LoginPage (){
             {/* <label className=" text-sm"> Worker ID </label> */}
             <input value={ID} onChange={(event) => setID(event.target.value)} className="w-[310px]  h-[45px]  p-2 focus:border-blue-500 focus:outline-none transition duration-200  mb-6 border-[#008081] rounded-md border  " type="text" placeholder="ID" />
             {/* <label className=" text-sm"> Worker Password </label> */}
-            <input value={Password} onChange={(event) => setPassword(event.target.value)} className="w-[310px] p-2  focus:border-blue-500 focus:outline-none transition duration-200 h-[35px] outline-none rounded-md border border-[#008081] " type="password" placeholder="Password" />
-            <button onClick={HandleWorker} className="w-[310px] h-[35px] mt-3 text-white  hover:bg-[#0E0E0E] hover:text-white  bg-[#008081] rounded-[5px]"> Submit </button>
+            <input value={Password} onChange={(event) => setPassword(event.target.value)} className="w-[310px] p-2 mt-3  focus:border-blue-500 focus:outline-none transition duration-200 h-[35px] outline-none rounded-md border border-[#008081] " type="password" placeholder="Password" />
+            <button onClick={HandleWorker} className="w-[310px] h-[35px] mt-5 text-white  hover:bg-[#0E0E0E] hover:text-white  bg-[#008081] rounded-[5px]"> Submit </button>
+            <Link to="forgetUser">
+            <h2 className="text-right text-sm mt-1 text-slate-500 hover:text-[#0e0e0e] cursor-pointer "> Forgot Password?</h2>
+            </Link>            
+            <Link to="/adminLogin"><h1 className="text-center mt-3 hover:text-[#008081] cursor-pointer hover:underline"> Access Admin Login </h1></Link>
         </form>
     </div>
 </div>
