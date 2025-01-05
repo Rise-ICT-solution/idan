@@ -109,10 +109,18 @@ function ManagerSidebar ({setSearchByID}){
                     <h1 className="text-white text-[18px]">Add Employee</h1>
                 </div>
             </Link>
+            
             <Link >
                 <div className="flex gap-2 items-center mt-5 w-[200px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
                 <FiKey className="text-[28px] ml-5  text-white" />
                 <h1 className="text-white text-[18px]">Reset Passwords </h1>
+                </div>
+            </Link>
+            <Link to="/ManagerProfile">
+                <div className="flex gap-2 items-center mt-5 w-[180px] hover:bg-[#0E0E0E] h-[40px] rounded-[10px] ">
+                    <TbUserPlus className="text-[20px] ml-5  text-white" />
+                    
+                    <h1 className="text-white text-[18px]">Manager Profile</h1>
                 </div>
             </Link>
         
