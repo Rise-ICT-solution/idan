@@ -8,25 +8,24 @@ import { HashLoader } from "react-spinners";
 function RejectedRequests() {
   const [RejectedRequests, setRejectedRequests] = useState([]);
   const [SearchByID, setSearchByID] = useState("");
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
 
   const getAllRejectedRequests = () => {
-    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
         const AllRequests = res.data;
         setRejectedRequests(AllRequests.filter((req) => req.status === "Rejected"));
+        setLoading(true);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     getAllRejectedRequests();
-  }, []);
+  });
 
   // Filtering the rejected requests based on the SearchByID value
   const SearchWorkersRequestByID = RejectedRequests.filter((request) =>
@@ -56,7 +55,7 @@ function RejectedRequests() {
         </div>
 
         {/* Table Section */}
-        { Loading == true ? (
+        { Loading == false ? (
                     <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ):SearchWorkersRequestByID.length > 0 ? (
           <div className="w-full mt-3 max-w-4xl mb-10 bg-white rounded-lg shadow-md">

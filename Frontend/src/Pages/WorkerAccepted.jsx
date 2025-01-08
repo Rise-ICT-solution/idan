@@ -9,25 +9,22 @@ function WorkerAcceptedRequests (){
 
     const [AcceptedRequests, setAcceptedRequests] = useState([])
     const [statusUpdate, setStatusUpdate] = useState("")
-    const [Loading, setLoading] = useState(true)
+    const [Loading, setLoading] = useState(false)
     const id = localStorage.getItem("worker")
     const getAllApprovedRequests = () => {
-        setLoading(true)
         axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`).then((res) => {
             const workerApproved = res.data;
             const filteredRequest = workerApproved.filter((req) => req.status === "Approved")
             setAcceptedRequests(filteredRequest)
+            setLoading(true)
         }).catch((err) => {
             console.log(err)
-        })
-        .finally(() => {
-            setLoading(false)
         })
     }
 
     useEffect(() => {
         getAllApprovedRequests()
-    },[])
+    })
 
     return <div className="w-full h-screen flex fixed bg-[#DADADA]">
         <div className="fixed">
@@ -39,7 +36,7 @@ function WorkerAcceptedRequests (){
                 <Link to="/managerDashboard"><FaDeleteLeft className=" text-[30px] sm:text-[40px] text-[#3b3832] hover:text-[#008081]  " /></Link>
             </div>
             {
-                Loading == true ? (
+                Loading == false ? (
                     <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[180px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ):
            AcceptedRequests.length > 0 ? (

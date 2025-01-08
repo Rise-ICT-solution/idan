@@ -22,7 +22,7 @@ Worker.post("/worker/login", workerLogin)
 Worker.get("/SingleWorker/:id", SingleWorker)
 
 //API that handles password reset request
-Worker.post("/resetPassword", PasswordRecovery)
+// Worker.post("/resetPassword", PasswordRecovery)
 
 
 

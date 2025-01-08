@@ -10,7 +10,7 @@ function AcceptedRequests() {
   const [AcceptedRequests, setAcceptedRequests] = useState([]); // State for accepted requests
   const [requests, setRequests] = useState([]); // State for all requests
   const [SearchByID, setSearchByID] = useState(""); // State for search input
-  const [Loading, setLoading] = useState(true); // State for loading spinner
+  const [Loading, setLoading] = useState(false); // State for loading spinner
 
   // Filter requests by ID based on the search input
   const SearchWorkersRequestByID = AcceptedRequests.filter((request) =>
@@ -18,25 +18,24 @@ function AcceptedRequests() {
   );
 
   const getAllAcceptedRequests = () => {
-    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
         const AllRequests = res.data;
         setRequests(AllRequests);
         setAcceptedRequests(AllRequests.filter((req) => req.status === "Approved")); // Filter accepted requests
+        setLoading(true);
+        
+
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        setLoading(false); // Hide loading spinner
-      });
   };
 
   useEffect(() => {
     getAllAcceptedRequests();
-  }, []);
+  });
 
   return (
     <div className="w-full h-screen flex bg-[#dadada]">
@@ -59,7 +58,7 @@ function AcceptedRequests() {
         </div>
 
         {/* Check if there are requests to display */}
-        { Loading == true ? (
+        { Loading == false ? (
                     <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ): SearchWorkersRequestByID.length > 0 ? (
           <div className="w-full mt-5 max-w-4xl mb-10 bg-white rounded-lg shadow-md">

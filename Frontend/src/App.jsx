@@ -21,14 +21,14 @@ import WorkerUpdate from "./Pages/WorkerUpdate"
 import WorkerViewBox from "./Pages/WorkerViewBox"
 import ManagerMessageView from "./Pages/ManagerMessageView"
 import WorkerMessageView from "./Pages/WorkerMessageView"
-import WorkerBellPage from "./Pages/WorkerNotification"
+// import WorkerBellPage from "./Pages/WorkerNotification"
 import WorkerNotificationPage from "./Pages/WorkerNotification"
 import WorkerPendingRequests from "./Pages/WorkerPending"
 import WorkerRejectedRequests from "./Pages/WorkerRejected"
 import WorkerAcceptedRequests from "./Pages/WorkerAccepted"
 import ApprovedScan from "./Pages/ApprovedScan"
 // import UserForgetPassword from "./Pages/UserForgetPassword"
-// import GetUserIdOnly from "./Pages/GetUserIdOnly"
+import WorkerResetPassword from "./Pages/WorkerResetPassword"
 
 function App (){
   return <Routes>
@@ -60,8 +60,7 @@ function App (){
     <Route path="/workerUpdate/:_id" element={<WorkerUpdate/>} />
     <Route path="/managerMessageView/:id" element={<ManagerMessageView/>} />
     {/* <Route path="/forgetUser" element={<UserForgetPassword/>} /> */}
-    {/* <Route path="/resetPassword" element={<WorkerResetPassword/>} /> */}
-
+    <Route path="/resetPassword" element={<WorkerResetPassword/>} />
   </Routes>
 }
 export default App 

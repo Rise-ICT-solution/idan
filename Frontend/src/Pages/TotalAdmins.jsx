@@ -12,18 +12,16 @@ function TotalAdmins() {
   const [Loading, setLoading] = useState(false);
 
   const HandleGetAdmins = () => {
-    setLoading(true);
+    
     axios
       .get("http://localhost:7000/Admin/read")
       .then((response) => {
         setAdmins(response.data);
+        setLoading(true)
       })
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => {
-        setLoading(false);
-    })
   };
 
   // Filter the Admins based on the search input
@@ -45,7 +43,7 @@ function TotalAdmins() {
         <h1 className="ml-[43%] text-3xl font-semibold text-[#0e0e0e]">
           All Admins
         </h1>
-        { Loading == true ? (
+        { Loading == false ? (
                     <HashLoader className=" sm:ml-[480px] sm:mt-[180px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ):SearchAdminsByID.length > 0 ? (
           <div className="w-[950px] sm:ml-10 top-58 mt-10 overflow-y-auto bg-white rounded-lg shadow-md">

@@ -18,7 +18,7 @@ function WorkerDashboard() {
     const id = localStorage.getItem("worker");
 
     const HandleGetResult = () => {
-        // setLoading(true);
+        //// setLoading(true);
         axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`)
             .then((response) => {
                 setRequests(response.data);
