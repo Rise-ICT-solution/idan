@@ -10,27 +10,24 @@ function PendingRequests() {
   const [PendingRequests, setPendingRequests] = useState([]);
   const [PendingCount, setPendingCount] = useState(0);
   const [SearchByID, setSearchByID] = useState(""); // State for search input
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
 
   // const filteredRequests = PendingRequests.filter((request) =>
   //   request.ID.toLowerCase().includes(SearchByID.toLowerCase())
   // );
   const getAllPendingRequests = () => {
-    setLoading(true);
     axios
       .get("http://localhost:7000/requests/read")
       .then((res) => {
         const Allrequests = res.data;
         const allPending = Allrequests.filter((req) => req.status === "pending");
         setPendingRequests(allPending)
+        setLoading(true);
         setPendingCount(allPending.length) //set the count of pending requests
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        setLoading(false);
-    })
   };
 
   const SearchWorkersRequestByID = PendingRequests.filter((request) => 
@@ -39,7 +36,7 @@ function PendingRequests() {
   )))
   useEffect(() => {
     getAllPendingRequests();
-  }, []);
+  });
 
   return (
     <div className="w-full h-screen flex bg-[#dadada]">
@@ -64,7 +61,7 @@ function PendingRequests() {
 
         {/* Scrollable Table Section */}
         {/* Search words requests by */}
-        { Loading == true ? (
+        { Loading == false ? (
                     <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ): SearchWorkersRequestByID.length > 0 ? (
         <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">

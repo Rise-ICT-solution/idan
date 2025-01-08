@@ -69,34 +69,51 @@ const SingleWorker = async (req, res) => {
 }
 
 //Worker Password Recovery 
-const PasswordRecovery = async (req, res) => {
-    const CheckWorkerID = await WorkerSchema.findOne({id: req.body.id})
-    if (!CheckWorkerID){
-        res.send("No worker found with this ID")
-    }
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            email: "bakaryare2003@gmail.com",
-            password: "2162"
-        }
-    })
-     const mailOptions = {
-        from: "bakaryare2003@gmail.com",
-        to: CheckWorkerID.email,
-        subject: "Password Recovery",
-        text: `Your password is: ${CheckWorkerID.password}`
-     }
-     transporter.sendMail(mailOptions, (error, info) => {
-        if (error){
-            res.send("Error for sending email")
-            console.log(error)
-        } else {
-            console.log("Email sent: " + info.response)
-            res.send("Password has sent to your email")
-        }
-     })
-}
+// const PasswordRecovery = async (req, res) => {
+//     console.log('EMAIL_USER:', process.env.EMAIL_USER);
+//     console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
+//     const workerID = req.body.id;
+    
+//     // Validate worker ID
+//     if (!workerID) {
+//         return res.send( "Worker ID is required");
+//     }
+
+//     // Check if worker with the given ID exists
+//     const worker = await WorkerSchema.findOne({ id: workerID });
+//     if (!worker) {
+//         return res.send("No worker found with this ID");
+//     }
+//   // Log email credentials
+//     // Setup Nodemailer transporter with environment variables
+//     const transporter = nodemailer.createTransport({
+//         service: "gmail",
+//         auth: {
+//             user: process.env.EMAIL_USER, // Use environment variables for credentials
+//             pass: process.env.EMAIL_PASS
+//         }
+//     });
+
+//     // Email options
+//     const mailOptions = {
+//         from: process.env.EMAIL_USER,
+//         to: worker.email,
+//         subject: "Password Recovery",
+//         text: `Your password is: ${worker.password}` // Be cautious with sending passwords directly
+//     };
+
+//     // Send the email
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//             console.error("Error sending email:", error);
+//             return res.status(500).json({ error: "Error sending email" });
+//         }
+//         console.log("Email sent: " + info.response);
+//         res.status(200).json({ message: "Password has been sent to your email" });
+//     });
+// };
 
 
-module.exports = {workerCreate,workerGettAll,workerUpdate,workerdelete,workerLogin,SingleWorker, PasswordRecovery}
+module.exports = {workerCreate,workerGettAll,workerUpdate,workerdelete,workerLogin,SingleWorker}
+// PasswordRecovery
+

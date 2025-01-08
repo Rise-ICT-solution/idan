@@ -13,22 +13,19 @@ function WorkerPendingRequests (){
     const id = localStorage.getItem("worker")
 
     const getAllPendingRequests = () => {
-        setLoading(true)
             axios.get(`http://localhost:7000/request/SingleRead/${JSON.parse(id).id}`).then((res) => {
                 const WorkerPending = res.data;
                 const filteredRequest = WorkerPending.filter((req) => req.status === "pending")
                 setAllPendingRequests(filteredRequest)
+                setLoading(true)
             }).catch((err) => {
                 console.log(err)
-            })
-            .finally(() => {
-                setLoading(false)
             })
         }
     
         useEffect(() => {
             getAllPendingRequests()
-        },[])
+        })
 
     return <div className="w-full flex h-screen  bg-[#DADADA]">
         <div className="fixed">
@@ -40,7 +37,7 @@ function WorkerPendingRequests (){
                 <Link to="/workerDashboard"><FaDeleteLeft className="sm:text-[40px] text-[30px] text-[#3b3832] hover:text-[#008081]  " /></Link>
             </div>
             {
-                Loading == true ? (
+                Loading == false ? (
                     <HashLoader className=" sm:ml-[400px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
             ):
             <div className="w-full  mt-4 max-w-4xl mb-10 bg-white rounded-lg shadow-md">

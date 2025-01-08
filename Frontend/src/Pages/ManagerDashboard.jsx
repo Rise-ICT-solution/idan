@@ -18,10 +18,10 @@ function ManagerDashboard() {
     const [approvedCount, setApprovedCount] = useState(0); // State for approved requests count
     const [pendingCount, setPendingCount] = useState(0);   // State for pending requests count
     const [rejectedCount, setRejectedCount] = useState(0); // State for rejected requests count
-    const [Loading, setLoading] = useState(true);
+    const [Loading, setLoading] = useState(false);
 
     const getAllPendingRequests = () => {
-        setLoading(true);
+        // setLoading(true);
         axios.get("http://localhost:7000/requests/read")
             .then((res) => {
                 const AllRequests = res.data;
@@ -34,14 +34,11 @@ function ManagerDashboard() {
                 setApprovedCount(approvedRequests.length);
                 setPendingCount(pendingRequests.length);
                 setRejectedCount(rejectedRequests.length);
-
                 setPendingRequests(pendingRequests);
+                setLoading(true)
             })
             .catch((err) => {
                 console.log(err);
-            })
-            .finally(() => {
-                setLoading(false);
             })
     };
 
@@ -57,7 +54,7 @@ function ManagerDashboard() {
 
     useEffect(() => {
         getAllPendingRequests();
-    }, []);
+    });
 
     return (
         <div className="flex w-full bg-[#DADADA] h-screen">
