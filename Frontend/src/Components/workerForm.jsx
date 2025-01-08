@@ -11,13 +11,32 @@ function WorkerForm() {
     const [EndDate, setEndDate] = useState("");
     const [Duration, setDuration] = useState(0);
     const [Destination, setDestination] = useState("");
+    const [error, setError] = useState(false)
+
     const [PermissionReason, setPermissionReason] = useState("");
     const navigate = useNavigate();
 
     const worker = localStorage.getItem('worker'); // worker is key in local storage
 
+
+    const checkFormValidation = () => {
+        if(StartDate == "" || EndDate == "" || Destination == ""){ // xaqiiji in ID iyo Password ka ay empty yihiin
+            setError(true) // Haddii ay empty yihiin State true noogu shub.
+            return false  // Sidoo kale function ka waa inu false soo celiyaa
+        }
+        else {
+            setError(false) 
+            return true
+        }
+    }
+
     const HandlePostRequest = (e) => {
         e.preventDefault();
+
+        if(checkFormValidation()){
+
+      
+
         axios.post("http://localhost:7000/new/request", {
             "fullName": JSON.parse(worker).name,
             "ID": JSON.parse(worker).id,
@@ -46,6 +65,7 @@ function WorkerForm() {
             // alert("Error in sending request");
             console.log(error);
         });
+    }
     };
     const calculateDuration = (startDate, endDate) => {
         const start = new Date(startDate);
@@ -68,13 +88,15 @@ function WorkerForm() {
     return <div>
         <WorkerSideBar />
         <div className="bg-[#D9D9D9] w-full h-screen py-12">
-            <div className="w-[370px] px-2 ml-2 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[480px] rounded-[8px] bg-white ">
+            <div className="w-[370px] px-2 ml-2 sm:mt-0 mt-20 sm:ml-[38%] shadow-lg h-[500px] rounded-[8px] bg-white ">
                 <form className="pt-4">
+                {error == true ? <p className="text-red-400">All inputs are required</p>: ""}
+
                     <div className="flex">
                         <Link to="/workerDashboard">
                             <TiBackspaceOutline className="absolute text-[25px] mt-2 text-[#008081] hover:text-[#1a4343] ml-[310px]" />
                         </Link>
-                        <h1 className="text-center text-[#008081] ml-[80px]  font-Roboto text-[25px]">
+                        <h1 className="text-center text-[#008081] ml-[80px]  font-Roboto text-[20px]">
                             Apply Permission
                         </h1>
                     </div>

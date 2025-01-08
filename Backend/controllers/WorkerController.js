@@ -1,5 +1,5 @@
 const WorkerSchema = require("../Model/WorkerSchema")
-const nodemailer = require("nodemailer")
+// const nodemailer = require("nodemailer")
 
 const workerCreate = async (req, res) => {
     const newWorker = WorkerSchema(req.body)
@@ -56,9 +56,7 @@ const workerLogin =  async (req, res) => {
         }
         
         }
-        else {
-            res.send({empty: "Worker ID and Password are required "})
-        }
+      
     
 }
 

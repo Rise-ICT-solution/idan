@@ -61,7 +61,7 @@ function WorkerDashboard() {
             {/* Main content */}
             <div className=" sm:ml-[230px] mb-20  overflow-y-auto">
                 <div className="pt-10 px-4 mt-12 sm:mt-0">
-                    <h1 className="text-[25px] font-semibold">Request Status Insights</h1>
+                    <h1 className="text-[22px] font-semibold">Request Status Insights</h1>
                     <div className="pt-4 sm:flex grid-cols-[160px_160px] gap-6 grid sm:gap-24">
                         <Link to="/workerPendingRequests">
                             <WorkerOverView icon={ImSpinner3} IconColor="text-black" Users="Pending Requests" Count={pendingCount} />
@@ -76,7 +76,7 @@ function WorkerDashboard() {
                 </div>
 
                 <div className="px-4 mt-10">
-                    <h1 className="text-[23px] font-semibold">Previous Requests</h1>
+                    <h1 className="text-[18px] font-semibold">Previous Requests</h1>
                     {
                         Loading == false ? (
                         <HashLoader className=" sm:ml-[450px] sm:mt-[100px] mt-[60px] ml-[150px] " color="#008081" size={50} loading={Loading} /> 
@@ -85,12 +85,12 @@ function WorkerDashboard() {
                             <table className="shadow-md rounded-lg w-full text-left border-collapse">
                                 <thead>
                                     <tr className="bg-[#008081] text-white font-semibold">
-                                        <td className="p-4 text-center rounded-tl-lg">No.</td>
-                                        <td className="p-4 text-center">Start Date</td>
-                                        <td className="p-4 text-center">End Date</td>
-                                        <td className="p-4 text-center">Status</td>
-                                        <td className="p-4 text-center">Destination</td>
-                                        <td className="p-4 text-center rounded-tr-lg">Action</td>
+                                        <td className="p-4 text-sm text-center rounded-tl-lg">No.</td>
+                                        <td className="p-4 text-sm text-center">Start Date</td>
+                                        <td className="p-4 text-sm text-center">End Date</td>
+                                        <td className="p-4 text-sm text-center">Status</td>
+                                        <td className="p-4 text-sm text-center">Destination</td>
+                                        <td className="p-4 text-sm text-center rounded-tr-lg">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white">
@@ -112,7 +112,7 @@ function WorkerDashboard() {
                                                 <Link to={RequestMessage.status === "Approved" || RequestMessage.status === "Rejected" 
                                                 ? `/workerMessageView/${RequestMessage._id}`
                                                 : `/workerViewBox/${RequestMessage._id}`}>
-                                                    <button className="sm:px-4 w-[110px] py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
+                                                    <button className="sm:px-4 w-[110px] text-sm py-2 bg-[#008081] text-white rounded-md hover:bg-[#1b5a5a]">
                                                         View More
                                                     </button>
                                                 </Link>

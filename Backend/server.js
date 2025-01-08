@@ -13,10 +13,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/iDaan").then (() => {
 })
 
 
-const adminRoute = require("../Backend/Routes/AdminRouter")
-const workerRoute = require("../Backend/Routes/WorkerRouter")
-const requestRoute = require("../Backend/Routes/WorkerRequestRouter")
-const MananagerResponse = require("../Backend/Routes/ManagerResponseRouter")
+const adminRoute = require("./Routes/AdminRouter")
+const workerRoute = require("./Routes/WorkerRouter")
+const requestRoute = require("./Routes/WorkerRequestRouter")
+const MananagerResponse = require("./Routes/ManagerResponseRouter")
 // const PasswordRecovery = require("./Routes/")
 
 

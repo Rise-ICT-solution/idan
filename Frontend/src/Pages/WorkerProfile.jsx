@@ -8,6 +8,11 @@ function WorkerProfile() {
   const navigate = useNavigate();
   const [worker, setWorker] = useState(null);
 
+
+  const goBackToParent = () => {
+    navigate(-1); // Page markii hore aan imaanay nagu celi
+  };
+
   // Load worker data from localStorage
   useEffect(() => {
     const workerData = JSON.parse(localStorage.getItem("worker"));
@@ -44,6 +49,9 @@ function WorkerProfile() {
             </Link>
           </>
         )}
+        <Link className="mt-10 cursor-pointer" onClick={goBackToParent}> 
+         <p>Go back</p>
+        </Link>
       </div>
     </div>
   );

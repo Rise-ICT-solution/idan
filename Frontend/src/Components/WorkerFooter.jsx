@@ -35,13 +35,10 @@ function WorkerFooter(){
             </div>
         </Link>
         <div className="">
-            <div className="" onClick={() => setIsUserOpen(!IsUserOpen)}>
-                {IsUserOpen ? (
-            <RiUserFill className="sm:text-[28px] text-[30px] hover:text-black   sm:ml-4 text-white" />
-                ) : (
-            <RiUserLine className="sm:text-[28px] text-[30px] hover:text-black   sm:ml-4 text-white" />
-                )}
-            </div>
+            <Link to="/WorkerProfile">
+        <RiUserFill className="sm:text-[28px] text-[30px] hover:text-black   sm:ml-4 text-white" />
+            </Link>
+
             {/* <h1 className="text-white hidden sm:flex text-[18px]">Profile</h1> */}
         </div>
     </div>
