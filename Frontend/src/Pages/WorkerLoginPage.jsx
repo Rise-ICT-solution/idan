@@ -86,7 +86,7 @@ function LoginPage () {
                             Submit
                         </button> 
                         }
-                        <Link to="forgetUser">
+                        <Link to="/resetPassword">
                             <h2 className="text-right text-sm mt-1 text-slate-500 hover:text-[#0e0e0e] cursor-pointer">Forgot Password?</h2>
                         </Link>
                         <Link to="/adminLogin">

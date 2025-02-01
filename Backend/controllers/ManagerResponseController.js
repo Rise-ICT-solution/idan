@@ -9,6 +9,8 @@ const response = async (req, res) => {
     }
 }
 
+
+
 const UpdateStatus = async (req, res) => {
     const {status}  = req.body //should be approved or rejected
     const StatusUpdate = await managerResponseSchema.findByIdAndUpdate(req.params.ID)

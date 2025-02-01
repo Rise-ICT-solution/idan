@@ -43,8 +43,10 @@ const updateAdmin = async (req, res)=>{
     }
 }
 
-//DeleteAdmin
 
+
+
+//DeleteAdmin
 const deleteAdmin = async (req, res)=>{
     const AdminDelete = await AdminSchema.deleteOne({_id: req.params.id})
     if (AdminDelete){
@@ -52,8 +54,9 @@ const deleteAdmin = async (req, res)=>{
     }
 }
 
-// adminLogin
 
+
+// adminLogin
 const adminLogin = async (req, res)=>{
     if (req.body.id && req.body.password) {
         const admin  = await AdminSchema.findOne(req.body)

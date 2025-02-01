@@ -16,6 +16,7 @@ const workerGettAll = async (req, res) => {
 }
 
 
+
 //an API that updates Workers data 
 const workerUpdate = async (req, res) => {
     const updateWorker = await WorkerSchema.updateOne({_id: req.params.id},
@@ -35,6 +36,8 @@ const workerUpdate = async (req, res) => {
     }
 }
 
+
+
 //an API that deletes Workers data
 const workerdelete = async (req, res) => {
     const deleteWorker = await WorkerSchema.deleteOne({_id: req.params.id})
@@ -42,6 +45,7 @@ const workerdelete = async (req, res) => {
         res.send("Worker has been deleted successfully ")
     }
 }
+
 
 
 // API to login a worker in the worker login page 
@@ -59,6 +63,8 @@ const workerLogin =  async (req, res) => {
       
     
 }
+
+
 
 // API to get all requests for a specific worker
 const SingleWorker = async (req, res) => {

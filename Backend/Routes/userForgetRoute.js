@@ -1,10 +1,8 @@
-// const express = require('express')
-// const {userForgetPassword,userGettForgetPasswords} = require('../controllers/userForgetController')
-// const userForgetRoute = express.Router()
+const express = require('express')
+const {PasswordRecovery} = require('../controllers/userForgetController')
+const userForgetRoutePassword = express.Router()
 
-// userForgetRoute.post("/userForget",  userForgetPassword)
-
-// userForgetRoute.get("/getAllIdUsersForget", userGettForgetPasswords)
+userForgetRoutePassword.post("/userForget",  PasswordRecovery)
 
 
-// module.exports = userForgetRoute
+module.exports = userForgetRoutePassword
